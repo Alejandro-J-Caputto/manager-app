@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'app/sass-structure/abstracts/functions';
+@import 'app/sass-structure/abstracts/mixins';
+@import 'app/sass-structure/abstracts/variables';
+
+@import 'app/sass-structure/base/base';
+@import 'app/sass-structure/base/animations';
+@import 'app/sass-structure/base/typography';
+@import 'app/sass-structure/base/utilities';
+
+@import 'app/sass-structure/components/cardAuth';
+@import 'app/sass-structure/components/buttons';
+@import 'app/sass-structure/components/form';
+@import 'app/sass-structure/components/workspaceCard';
+@import 'app/sass-structure/components/modal';
+@import 'app/sass-structure/components/toDoList';
+@import 'app/sass-structure/components/notifications';
+
+
+@import 'app/sass-structure/layout/footer';
+@import 'app/sass-structure/layout/navbar';
+@import 'app/sass-structure/layout/main-content-workspace';
+@import 'app/sass-structure/layout/sidebar';
+@import 'app/sass-structure/layout/navigation';
+
+
+
+@import 'app/sass-structure/pages/auth';
+@import 'app/sass-structure/pages/home';
+@import 'app/sass-structure/pages/workspace';
+@import 'app/sass-structure/pages/settings';
+@import 'app/sass-structure/pages/profile';
+

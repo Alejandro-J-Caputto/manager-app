@@ -1,0 +1,114 @@
+.sidebar {
+  // background-color: tomato;
+  flex: 0 0 22%;
+  @include responsive(phone) {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  &-nav {
+    position: relative;
+    // background-color: turquoise;
+    padding: 4rem 0;
+    list-style: none;
+    @include responsive(phone) {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      padding-bottom: 1rem;
+    }
+    &__item {
+      // background-color: yellow;
+      margin-bottom: 4px;
+      padding: 2rem;
+      background-color: $color-angular-blue-light;
+      width: 100%;
+      border-radius: 14px;
+      transition: all .3s;
+      @include responsive(phone) {
+        width: 75%;
+        align-self: center;
+        align-items: center;
+      }
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        background-color: $color-angular-blue-dark;
+      }
+    }
+    &__link:link, &__link:visited {
+      text-decoration: none;
+      color: $color-white;
+      
+    }
+    &__link:hover, &__link:active {
+
+    }
+  }
+
+}
+//SIDEBAR PROFILE 
+
+.sidebar-profile {
+  width: 18%;
+  background-color: $color-grey-dark-1;
+  @include responsive(tab-land) {
+    
+  }
+  @include responsive(tab-port) {
+    // display: none;
+    // position: fixed;
+    width: 100%;
+    bottom: 8%;
+  }
+  @include responsive(phone) {
+    // display: none;
+    position: fixed;
+    width: 100%;
+    bottom: 6%;
+    // padding-bottom: 1rem;
+    // margin-bottom: 0px;
+  }
+   &__list {
+     // background-color: lightsteelblue;
+     padding-top: 2rem;
+     display: flex;
+     height: 100%;
+     flex-direction: column;
+     list-style: none;
+     text-align: center;
+     @include responsive(tab-port) {
+      // display: none;
+      // position: fixed;
+      padding-top: 0rem;
+     flex-direction: row;
+    }
+    @include responsive(phone) {
+      // display: none;
+      // position: fixed;
+      width: 100%;
+      bottom: 8%;
+      flex-direction: column;
+    }
+     &__item {
+       padding: 2rem;
+       margin-bottom: 5px;
+       cursor: pointer;
+       transition: all .3s;
+       &:hover {
+         background-color: $color-angular-light;
+ 
+       }
+       &:active {
+         background-color: $color-angular-darker;
+       }
+     }
+   }
+ }
+ .sidebar-profile__link:visited, .sidebar-profile__link:link  {
+   color: $color-white;
+   text-transform: uppercase;
+   text-decoration: none;
+ }

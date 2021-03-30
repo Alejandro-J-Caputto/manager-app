@@ -1,0 +1,15 @@
+.section__auth {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background: linear-gradient(145deg,#0d48a164,#42a4f584);
+  height: 100vh;
+  @include responsive(phone) {
+    background: none;
+    background: linear-gradient(150deg, rgba($color-angular-blue-dark, .9), rgba($color-angular-blue-light, .9));
+  }
+  @include responsive(tab-port) {
+    
+  }
+}

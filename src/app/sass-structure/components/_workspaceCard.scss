@@ -1,0 +1,30 @@
+.workspace-card {
+  display: flex;
+  height: 10rem;
+  width: 20rem;
+  justify-content: center;
+  align-items: center;
+  background-color: lightsalmon;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  color: $color-white;
+  font-weight: 600;
+  box-shadow: $shadow-dark;
+  background-color: purple;
+  cursor: pointer;
+  transition: all .3s;
+  margin-right: 20px;
+  @include responsive(phone) {
+    width: 30rem;
+    height: 15rem;
+    margin-right: unset;
+  }
+  &:hover {
+
+    transform: scale(1.2);
+
+  }
+  &:active {
+    transform: scale(1);
+  }
+}

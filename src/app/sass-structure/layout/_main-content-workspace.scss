@@ -1,0 +1,8 @@
+.main-content-dashboard {
+
+  display: flex;
+  // background-color: teal;
+  @include responsive(phone) {
+    flex-direction: column;
+  }
+}

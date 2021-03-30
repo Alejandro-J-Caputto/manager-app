@@ -1,0 +1,58 @@
+.section-home {
+position: relative;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+// flex: 1;
+// background-color: lightcoral;
+@include responsive(tab-land) {
+  height: fit-content;
+}
+@include responsive(tab-port) {
+  height: fit-content;
+
+}
+@include responsive(phone) {
+  height: fit-content;
+}
+}
+.welcome h2 {
+  color: $color-grey-dark-1;
+}
+.main-dashboard{
+
+  width: 50%;
+  align-self: center;
+  align-items: center;
+  flex: 0 0 100% ;
+  padding: 2rem;
+  // background-color: lightgreen;
+  @include responsive(tab-land) {
+    flex: 1;
+    padding: 6rem;
+    width: 100%;
+  }
+  @include responsive(tab-port) {
+    flex: 1;
+    padding: 4rem;
+  
+  }
+  @include responsive(phone) {
+    width: 100%;
+    padding-bottom: 9rem;
+  }
+}
+.grid__workspace {
+  display: flex;
+  // background-color: lightgrey;
+  // justify-content: center;
+  margin-top: 4rem;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include responsive(phone) {
+    justify-content: center;
+    margin-top: 5rem;
+  }
+}

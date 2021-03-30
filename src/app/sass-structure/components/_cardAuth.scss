@@ -1,0 +1,161 @@
+.auth-card {
+  position: relative;
+  flex: 0 0 60%;
+  width: 50%;
+  align-self: center;
+  display: flex;
+  justify-content: start;
+  align-content: space-around;
+  background: 
+    linear-gradient(
+      105deg,
+      rgba($color-white, .9)0%,
+      rgba($color-white, .9)50%,
+      $color-angular-blue-dark 50%,
+      $color-angular-blue-light 100%);
+  box-shadow: $shadow-dark;
+  border-radius: 20px;
+
+
+  @include responsive(tab-land) {
+    flex: 0 0 90%;
+    width: 90%;
+    // background-color: ;
+    // background: none;
+  }
+  @include responsive(tab-port) {
+    flex: 0 0 90%;
+    width: 90%;
+    // background-color: ;
+    // background: none;
+  }
+  @include responsive(phone) {
+    flex: 0 0 100%;
+    width: 100%;
+    border-radius: 0px;
+
+    // background-color: ;
+    background: none;
+
+  }
+
+  &__icon-box {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    @include responsive(phone) {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+  &__icon {
+    align-self: center;
+    height: 20rem;
+    width: 20rem;
+    @include responsive(phone) {
+      height: 10rem;
+      width: 10rem;
+
+    }
+  }
+  
+  &__form {
+
+    flex: 0 0 50%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    
+    & h2 {
+      margin-bottom: 3rem;
+    }
+    @include responsive(phone) {
+      flex: 0 0 100%;
+
+    }
+    &__group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 80%;
+
+      @include responsive(phone) {
+        // margin-top: 6rem;
+        // margin-bottom: 6rem;
+        color: $color-white;
+      }
+      & button {
+        align-self: center;
+        width: 15rem;
+        @include responsive(phone) {
+          margin-top: 6rem;
+          margin-bottom: 6rem;
+          color: $color-white;
+        }
+      }
+    }
+    &__group:not(:last-child) {
+      margin-bottom: 2rem;
+      @include responsive(phone) {
+        margin-bottom: .5rem;
+      }
+    }
+    &__input {
+      align-self: start;
+      display: block;
+
+      font-size: 1.5rem;
+      font-family: inherit;
+      color: inherit;
+      padding: 1.5rem 2rem .5rem;
+      border-radius: 2px;
+      background-color: rgba($color-white, .1);
+      // border-radius: 3px;
+      border: none;
+      //PLAY WITH THE BORDER BOTTOM FOR VALIDATIOn
+      border-bottom: 2px solid black;
+      width: 90%;
+      transition: all .6s;
+      @include responsive(phone) {
+        align-self: center;
+        background-color: $color-white;
+        color: $color-grey-dark-1;
+      }
+      &:focus {
+        outline: none;
+        box-shadow: $shadow-dark;
+        border-bottom: 3px solid $color-green-regular;
+      }
+      &::-webkit-input-placeholder {
+        color: $color-grey-dark-1;
+        // @include responsive(phone) {
+        //  color: ;
+        // }
+      }
+      &:focus:invalid {
+        border-bottom: 3px solid $color-primary-light;
+      }
+    }
+    &__label {
+      margin-left: 2rem;
+      margin-top: .7rem;
+      font-size: 1.4rem;
+      display: block;
+      transition: all .3s;
+      width: 90%;
+      @include responsive(phone) {
+       margin-left: 3.2rem;
+       color: $color-white;
+      }
+    }
+    &__input:placeholder-shown ~ &__label {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4rem);
+    }
+  }
+}
