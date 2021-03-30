@@ -1,0 +1,14 @@
+.loading {
+  & i {
+    font-size: 5rem;
+  }
+}
+
+.search__fail {
+  background-color: rgba($color-angular-light, .4);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 2rem 3rem;
+  margin-top: 10px;
+}

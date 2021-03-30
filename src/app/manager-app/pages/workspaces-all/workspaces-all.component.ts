@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ManagerAppService } from '../../services/manager-app.service';
 
 @Component({
   selector: 'app-workspaces-all',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkspacesAllComponent implements OnInit {
 
-  constructor() { }
+  get workspaces(){
+    return this.managerAppService._workspaces;
+  }
+
+
+  constructor(private managerAppService: ManagerAppService) { }
 
   ngOnInit(): void {
   }

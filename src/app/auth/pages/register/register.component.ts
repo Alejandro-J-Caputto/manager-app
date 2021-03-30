@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
       if(resp.status === 'success'){
         localStorage.setItem('bearer-todo', resp.token);
         this.auth._user = resp.newUser;
-        this.router.navigateByUrl('/v2/manager-app/dashboard')
+        this.router.navigateByUrl('/v2/manager-app/home')
       }
     },err => console.log(err))
 

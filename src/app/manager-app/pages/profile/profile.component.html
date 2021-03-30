@@ -1,1 +1,53 @@
-<p>profile works!</p>
+<div class="section-profile">
+  <div class="profile-menu">
+    <div class="sidebar-profile">
+      <ul class="sidebar-profile__list">
+        <li class="sidebar-profile__list__item">
+          <a class="sidebar-profile__link" href="" >USER DATA</a>
+        </li>
+        <li class="sidebar-profile__list__item">
+          <a class="sidebar-profile__link" href="" >placeholder</a>
+        </li>
+        <li class="sidebar-profile__list__item">
+          <a class="sidebar-profile__link" href="" >placeholder</a>
+        </li>
+        <li class="sidebar-profile__list__item">
+          <a class="sidebar-profile__link" href="" >placeholder</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-content">
+      <div class="profile-content-display">
+        <h1 class="heading-primary">PROFILE CONTENT</h1>
+        <div class="profile-picture">
+          <img src="assets/img/profile-user.png" alt="">
+        </div>
+        <div class="profile-form">
+          <form action="" class="profile-form__form">
+            
+            <div class="profile-form__form__group">
+              <label for="name" class="profile-form__form__label">Name</label>
+              <input  value="{{userData.name}}" type="text" class="profile-form__form__input" required placeholder="Name" id="name">
+            </div>
+            <div class="profile-form__form__group">
+              <label for="email" class="profile-form__form__label">Email Address</label>
+              <input value="{{userData.email}}" type="text" class="profile-form__form__input" required placeholder="Email Address" id="email">
+            </div>
+            <div class="profile-form__form__group">
+              <label for="password" class="profile-form__form__label">Password</label>
+              <input type="password" class="profile-form__form__input" placeholder="Password" required id="password">
+            </div>
+            <div class="profile-form__form__group">
+              <label for="passwordConfirm" class="profile-form__form__label">Confirm Password</label>
+              <input type="password" class="profile-form__form__input" placeholder="Confirm Password" required id="passwordConfirm">
+            </div>
+            <div class="profile-form__form__group">
+              <button class="btn btn--red">UPDATE</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ export interface Workspace {
   title:     string;
   user:      User;
   __v:       number;
-  todoLists: TodoList[];
+  todoLists: TodoLists[];
 }
 
 export interface TodoList {

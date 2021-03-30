@@ -17,7 +17,7 @@ const routes: Routes = [
       children: [
         {path: '', component: WorkspacesAllComponent},
         {path: 'workspaces', component: WorkspacesAllComponent},
-        {path: 'search/:terminus', component: SearchComponent}
+        {path: 'search', component: SearchComponent}
       ]
     },
       {path: 'workspace/:id', component: WorkspaceViewComponent},

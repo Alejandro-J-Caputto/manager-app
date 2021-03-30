@@ -1,1 +1,4 @@
-<p>workspaces-all works!</p>
+<div class="grid__workspace">
+  <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of workspaces" class="workspace-card">{{space.title}}</div>
+  <!-- <div (click)="onAddWorkspace()" class="workspace-card">ADD WORKSPACE</div> -->
+</div>

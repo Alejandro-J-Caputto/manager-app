@@ -1,0 +1,55 @@
+<div #refOverlay class="overlay hidden">&nbsp;</div>
+
+<div #refModal class="modal hidden">
+  <div class="modal-content">
+    <div class="modal__close"><i (click)="closeModal()">X</i></div>
+    <div class="modal__title">
+      <h3 class="modal__heading">
+        THIS IS THE MODAAL
+      </h3>
+    </div>
+    <div class="modal__body">
+      <p>This is going to happen Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt qui rem dicta, libero 
+        dolores a pariatur excepturi aliquam deleniti alias?</p>
+    </div>
+    <div class="modal__button">
+      <button (click)="deleteTodoList()" class="btn modal__button--confirm">CONFIRM</button>
+      <button (click)="closeModal()" class="btn modal__button--cancel">CANCEL</button>
+    </div>
+  </div>
+</div>
+
+<div data-id="{{todoListID}}" class="todoList-card">
+  <div class="todoList-card__head">
+    <input 
+    type="text" 
+    class="todoList-card__head__title"
+    (keyup.enter)="changeTodoListName(todoListName.value)"
+    #todoListName 
+    value="{{name}}"
+    >
+    <i (click)="todoListModal()" class="fas fa-trash-alt"></i>
+  </div>
+  <ul class="todoList-card__body">
+    <div *ngFor="let todo of todos" class="todoList-card__body__item">
+      <input 
+      (keyup.enter)="onChangeTodo(inputChange.value, todo._id)" 
+      #inputChange class="li" value="{{(todo.todo.length > 20 && !isActive) ? (todo.todo | slice:0:24)+'...' : todo.todo}}" 
+      autocomplete="off" 
+      data-id="{{todo._id}}" 
+      type="text" cols="30" 
+      rows="1" 
+      (click)="handleIsActive()" 
+      class="todo">
+      <i (click)="isDone(todo._id)" style="color: green;" *ngIf="todo.done" class="far fa-check-square checkbox"></i>
+      <i (click)="isDone(todo._id)"  *ngIf="!todo.done" class="far fa-square done checkbox"></i>
+    </div>
+  </ul>
+  <div class="todoList-card__add-item">
+    <input #addTodoInput 
+    (keyup.enter)="addTodoToList(addTodoInput)" 
+    type="text" placeholder="Add a new todo" 
+    class="todoList-card__add-item__input">
+    <span class="fas fa-pencil-alt"></span>
+  </div>
+</div>

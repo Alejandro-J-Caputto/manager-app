@@ -1,1 +1,19 @@
-<p>navbar-main works!</p>
+<div class="navbar">
+  <div class="navbar__logo-box">
+    <a class="navbar__link" [routerLink]="['/v2/manager-app/home'] "> <i class="navbar__logo fab fa-pied-piper-square"></i></a>
+  </div>
+ <div class="navbar__list">
+  <div class="navbar__list-item">
+    <a class="navbar__link" (click)= "onAddWorkspace()"><i class="navbar__list-item-icon--settings fas fa-edit"></i></a>
+  </div>
+  <div class="navbar__list-item">
+    <a class="navbar__link" [routerLink]="['/v2/manager-app/settings']" routerLinkActive="active-link"><i class="navbar__list-item-icon--settings fas  fa-cog"></i></a>
+  </div>
+  <div class="navbar__list-item">
+    <a class="navbar__link" [routerLink]="['/v2/manager-app/profile']" routerLinkActive="active-link"><img class="navbar__list-item-user-photo" src="../../../../assets/img/user-img-default.png" alt="User photo"></a>
+  </div>
+  <div class="navbar__list-item">
+    <a class="navbar__link" (click)="logout()" routerLinkActive="active-link"><i class="navbar__list-item-icon--logout fas fa-sign-out-alt"></i></a>
+  </div>
+ </div> 
+</div>

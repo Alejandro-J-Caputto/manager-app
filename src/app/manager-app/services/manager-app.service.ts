@@ -16,11 +16,12 @@ export class ManagerAppService {
   private headers:HttpHeaders = new HttpHeaders().set('Authorization', this.token);
   constructor(private http: HttpClient) {}
   //Get all the workspaces current user
-  getWorkspace(idUser:string):Observable<WorkspaceResponse> | void {
+  getWorkspace(idUser:string):Observable<WorkspaceResponse> | any {
     const url = `${this.apiUrl}/workspace`
     // this.headers.set('Authorization', idUser);
     const headers = new HttpHeaders()
       .set('Authorization', idUser)
+        // return this.http.get<WorkspaceResponse>(url, {headers})
       if(this.token){
 
         return this.http.get<WorkspaceResponse>(url, {headers})
@@ -66,7 +67,7 @@ export class ManagerAppService {
 
 
 
-  createTodo(todo:string, todoListId):Observable<any>{
+  createTodo(todo:string, todoListId:string):Observable<any>{
     const url = `${this.apiUrl}/todo`
     const body = {
       todo: todo,

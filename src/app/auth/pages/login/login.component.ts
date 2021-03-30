@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         if(resp.status === 'success'){
           localStorage.setItem('bearer-todo', resp.token);
           this.auth._user = resp.user;
-          this.router.navigate(['/v2/manager-app/dashboard'])
+          this.router.navigate(['/v2/manager-app/home'])
         }
       }, err => console.log(err));
     }

@@ -12,10 +12,14 @@
 }
 .todoList-wrapper {
 //  background-color: aquamarine;
+ padding: 2rem;
  display: flex;
- justify-content: space-around;
+ justify-content: start;
  flex-wrap: wrap;
 
+ @include responsive(phone){
+   justify-content: center;
+ }
  
 }
 
@@ -27,7 +31,13 @@
   box-shadow: $shadow-dark;
   height: fit-content;
   margin-bottom: 10px;
+  margin-right: 20px;
+
   transition: all .3s;
+  @include responsive(phone) {
+    margin-right: 0px;
+    padding: 2rem 4rem;
+  }
   & * {
     margin-bottom: 4px;
     
@@ -48,6 +58,9 @@
   // box-shadow: $shadow-dark;
 
   padding: 2rem 3rem .5rem 1rem;
+  @include responsive(phone) {
+    width: 250px;
+  }
   & + .fa-trash-alt {
     margin-left: -2.5rem;
     color: white;
@@ -71,6 +84,11 @@
   box-shadow: $shadow-dark;
 
   font-size: inherit;
+  
+  @include responsive(phone) {
+    position: relative;
+    width: 250px;
+  }
  & + .fa-pencil-alt {
     margin-left: -2.5rem;
  }
@@ -88,6 +106,9 @@
   // background-color: ;
   border-radius: 10px;
   border: none;
+  @include responsive(phone) {
+    width: 250px;
+  }
   & + .checkbox {
     margin-left: -2.5rem;
  }
@@ -101,7 +122,12 @@
 
 .add__card {
   // height: 8rem;
-
+  // width: 100%;
+  @include responsive(phone) {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+  }
 
 }
 .add__card__button {
@@ -113,6 +139,11 @@
   font-size: inherit;
   color: $color-white;
   cursor: pointer;
+   @include responsive(phone) {
+    // width: 250px;
+
+
+  }
 }
 .add__card input {
   width: 100%;
@@ -124,4 +155,5 @@
   color: var(--color-primary);
   background-color: rgb(235, 236, 240);
   font-size: 1.6rem;
+  
 }

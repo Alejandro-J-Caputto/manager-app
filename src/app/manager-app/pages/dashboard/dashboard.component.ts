@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ManagerAppService } from '../../services/manager-app.service';
 
 @Component({
   selector: 'app-dashboard',
