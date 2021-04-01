@@ -56,25 +56,25 @@ export class HomeComponent implements OnInit {
     overlay.classList.add('hidden'); 
   }
 
-  onGetTitle(val:string):void {
+  // onGetTitle(val:string):void {
 
-    const titleWorkspace = val.trim();
+  //   const titleWorkspace = val.trim();
 
 
-    if(!titleWorkspace.length) {
-      this.inputFlag = true;
-      return;
-    }
-    const inputVal = this.modalInput.nativeElement;
-    // this.todoApp.createWorkspace(val)
-    this.managerApp.createWorkspace(inputVal.value).subscribe((resp: WorkspaceResponse ) => {
+  //   if(!titleWorkspace.length) {
+  //     this.inputFlag = true;
+  //     return;
+  //   }
+  //   const inputVal = this.modalInput.nativeElement;
+  //   // this.todoApp.createWorkspace(val)
+  //   this.managerApp.createWorkspace(inputVal.value).subscribe((resp: WorkspaceResponse ) => {
       
-      this.managerApp._workspaces = [...this.workspaces, resp.workspace[resp.workspace.length - 1]]
-    })
-    inputVal.value = ''
-    //CLOSE THE MODAL 
-    // console.log(this.modalInput.nativeElement.value)
-    this.closeModal();
-  }
+  //     this.managerApp._workspaces = [...this.workspaces, resp.workspace[resp.workspace.length - 1]]
+  //   })
+  //   inputVal.value = ''
+  //   //CLOSE THE MODAL 
+  //   // console.log(this.modalInput.nativeElement.value)
+  //   this.closeModal();
+  // }
 
 }

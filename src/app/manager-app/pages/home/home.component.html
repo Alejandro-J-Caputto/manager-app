@@ -1,6 +1,6 @@
 <div class="section-home">
   <div class="main-dashboard">
-    <div class="welcome">
+    <!-- <div class="welcome">
       <h2 class="heading-secondary"> WELCOME {{user.name}}, </h2>
       <p class="paragraph">Manager App is a simple project that i've developed to put in practise different tecnologies and frameworks like Node, MongoDB, NoSql, Express, Mongoose, JavaScript, TypeScript, Angular & React. 
         Please play around, the app is responsive and is connected to my API.
@@ -16,7 +16,7 @@
         You can add cards. These cards works as an individual to do list. <br>
         You can delete them, update them.
       </p>
-    </div>
+    </div> -->
     <div class="main-content-dashboard">
       <nav class="sidebar">
         <ul class="sidebar-nav">
@@ -31,7 +31,7 @@
             </a>
         </li>
           <li class="sidebar-nav__item">
-            <a href="#" class="sidebar-nav__link">
+            <a [routerLink]="['/v2/manager-app/home/add']" routerLinkActive="router-link-active" class="sidebar-nav__link">
               <span>ADD </span>
             </a>
         </li>

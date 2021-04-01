@@ -1,4 +1,7 @@
 <div class="grid__workspace">
-  <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of workspaces" class="workspace-card">{{space.title}}</div>
+  <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of workspaces" class="workspace-card">
+    <span class="workspace-card__title">{{space.title}}</span>
+    <img [src]="space.img" alt="" class="workspace-card__img">
+  </div>
   <!-- <div (click)="onAddWorkspace()" class="workspace-card">ADD WORKSPACE</div> -->
 </div>

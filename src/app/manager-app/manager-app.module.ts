@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ManagerAppRoutingModule } from './manager-app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -13,14 +14,17 @@ import { SearchComponent } from './pages/search/search.component';
 import { WorkspacesAllComponent } from './pages/workspaces-all/workspaces-all.component';
 import { SharedModule } from '../shared/shared.module';
 import { TodolistCardComponent } from './components/todolist-card/todolist-card.component';
+import { WorkspaceAddComponent } from './pages/workspace-add/workspace-add.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, WorkspaceViewComponent, ProfileComponent, SettingsComponent, NotFoundComponent, HomeComponent, SearchComponent, WorkspacesAllComponent, TodolistCardComponent],
+  declarations: [DashboardComponent, WorkspaceViewComponent, ProfileComponent, SettingsComponent, NotFoundComponent, HomeComponent, SearchComponent, WorkspacesAllComponent, TodolistCardComponent, WorkspaceAddComponent],
   imports: [
     CommonModule,
     ManagerAppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DashboardComponent, WorkspaceViewComponent, ProfileComponent, SettingsComponent, NotFoundComponent, HomeComponent, SearchComponent, WorkspacesAllComponent

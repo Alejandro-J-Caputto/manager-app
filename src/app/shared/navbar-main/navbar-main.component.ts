@@ -26,17 +26,19 @@ export class NavbarMainComponent implements OnInit {
     this.authService.authLogOut();
   }
   onGetTitle(val:string):void {
-
+    
     const titleWorkspace = val.trim();
-
-
+    
     if(!titleWorkspace.length) {
       this.inputFlag = true;
       return;
     }
     const inputVal = this.modalInput.nativeElement;
+    const body = {
+      title: inputVal.value
+    }
     // this.todoApp.createWorkspace(val)
-    this.managerAppService.createWorkspace(inputVal.value).subscribe((resp: WorkspaceResponse ) => {
+    this.managerAppService.createWorkspace(body).subscribe((resp: WorkspaceResponse ) => {
       
       this.managerAppService._workspaces = [...this.workspaces, resp.workspace[resp.workspace.length - 1]]
     })

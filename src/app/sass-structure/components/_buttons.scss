@@ -13,6 +13,10 @@
   &--red{
     background-color: $color-angular-light;
   }
+  &--add {
+    align-self: center;
+   width: 50%; 
+  }
   &:hover {
     transform: translateY(-3px);
     box-shadow: $shadow-dark;

@@ -1,4 +1,6 @@
-<div class="section-workspace">
+<!-- <div class="section-workspace" [ngStyle]="{'background-image': 'url(' + theme +')'}"> -->
+<div class="section-workspace" [ngStyle]="styles()">
+
   <div class="todoList-wrapper">
     <app-todolist-card *ngFor="let todoList of todoLists" class="card-grid" [todoListID]="todoList._id" [dataName]="todoList.name" [dataTodos]="todoList.todos"></app-todolist-card>
     <div class="add__card">

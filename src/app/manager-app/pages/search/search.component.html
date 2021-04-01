@@ -5,7 +5,11 @@
     <p *ngIf="notMatch" class="search__fail"> This workspace doesn't exist </p>
   </div>
   <div *ngIf="!!!searching" class="grid__workspace">
-    <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of filteredWorkspaces" class="workspace-card">{{space.title}}</div>
+    <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of filteredWorkspaces" class="workspace-card">
+      <span class="workspace-card__title">{{space.title}}</span>
+      <img [src]="space.img" alt="" class="workspace-card__img">
+    </div>
+
   </div>
   <div *ngIf="searching" class="grid__workspace">
     <div class="loading"><i class="fas fa-sync fa-spin"></i> </div>

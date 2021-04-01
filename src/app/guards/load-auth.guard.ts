@@ -15,18 +15,23 @@ export class LoadAuthGuard implements CanActivate, CanLoad {
     if(localStorage.getItem('bearer-todo') === 'logout') {
 
       return true;
+    } else if(!localStorage.getItem('bearer-todo')) {
+      return true;
     } else {
       return false;
     }
+  
 
   }
   canLoad(): Observable<boolean> | boolean  {
     if(localStorage.getItem('bearer-todo') === 'logout') {
 
       return true;
+    } else if(!localStorage.getItem('bearer-todo')) {
+      return true;
     } else {
       return false;
     }
-  
-  }
+    
+}
 }

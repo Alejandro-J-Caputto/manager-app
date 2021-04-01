@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { WorkspaceAddComponent } from './pages/workspace-add/workspace-add.component';
 import { WorkspaceViewComponent } from './pages/workspace-view/workspace-view.component';
 import { WorkspacesAllComponent } from './pages/workspaces-all/workspaces-all.component';
 
@@ -17,7 +18,8 @@ const routes: Routes = [
       children: [
         {path: '', component: WorkspacesAllComponent},
         {path: 'workspaces', component: WorkspacesAllComponent},
-        {path: 'search', component: SearchComponent}
+        {path: 'search', component: SearchComponent},
+        {path: 'add', component: WorkspaceAddComponent}
       ]
     },
       {path: 'workspace/:id', component: WorkspaceViewComponent},

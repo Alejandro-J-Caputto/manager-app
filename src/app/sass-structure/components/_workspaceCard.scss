@@ -1,4 +1,5 @@
 .workspace-card {
+  position: relative;
   display: flex;
   height: 10rem;
   width: 20rem;
@@ -11,6 +12,7 @@
   font-weight: 600;
   box-shadow: $shadow-dark;
   background-color: purple;
+  overflow: hidden;
   cursor: pointer;
   transition: all .3s;
   margin-right: 20px;
@@ -27,4 +29,51 @@
   &:active {
     transform: scale(1);
   }
+  &--1 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-arnie-chou-1229042.jpg');
+
+  }
+  &--2 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-aviv-perets-3274903.jpg');
+
+  }
+  &--3 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-eberhard-grossgasteiger-572897.jpg');
+
+  }
+  &--4 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-felix-mittermeier-1146134.jpg');
+
+  }
+  &--5 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-huebert-world-3213982.jpg');
+
+  }
+  &--6 {
+    background-size: cover;
+    background-image: url('../../../assets/img/pexels-祝-鹤槐-1715495.jpg');
+
+  }
+  &__title {
+    position: absolute;
+  }
+  &__img {
+    height: 10rem;
+    width: 20rem;
+    background-size: cover;
+    @include responsive(phone) {
+      width: 30rem;
+      height: 15rem;
+    }
+  }
+}
+.selectedCard {
+  transform: scale(1.2);
+  z-index: 100;
+  border: 2px solid blue;
 }

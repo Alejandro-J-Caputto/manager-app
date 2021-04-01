@@ -9,6 +9,7 @@ export interface Workspace {
   title:     string;
   user:      User;
   __v:       number;
+  img:       string;
   todoLists: TodoLists[];
 }
 

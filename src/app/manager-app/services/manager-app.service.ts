@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { TodoListResponse, TodoLists, User, Workspace, WorkspaceResponse } from '../manager-interfaces/managerApp.interface';
 import { Observable } from 'rxjs';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagerAppService {
+  // public theme!: string;
   public _authenticatedUser!:User;
   public _workspaces:Workspace[] = [];
   public globaltodoListTest:TodoLists[] = [];
@@ -29,9 +31,11 @@ export class ManagerAppService {
   }
 
   //Creates a workpacee at Sidebar.component
-  createWorkspace(title:string):Observable<any>{
+  createWorkspace(form: {title: string, theme?: string}):Observable<any>{
+    console.log(form)
     const body = {
-      title
+      title: form.title,
+      img: form.theme
     }
     // const headers = new HttpHeaders().set('Authorization', this.token);
     return this.http.post(`${this.apiUrl}/workspace`, body, {headers:this.headers});
@@ -90,7 +94,9 @@ export class ManagerAppService {
   }
 
 
-
+  // onTheme(val: string) {
+  //   this.theme = val;
+  // }
 
 
   

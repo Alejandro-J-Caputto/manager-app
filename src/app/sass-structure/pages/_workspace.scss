@@ -1,13 +1,15 @@
 .section-workspace {
+  position: relative;
   // background-color: cadetblue;
   min-height: 100vh;
-  
+  padding: 3rem;
   // background-color: bisque;
   @include responsive(phone) {
-    margin-top: 5rem;
+    // margin-top: 5rem;
     // margin-top: 6rem;
     // margin-bottom: 6rem;
-    margin-bottom: 10rem;
+    // margin-bottom: 10rem;
+
   }
 }
 .todoList-wrapper {
@@ -16,6 +18,8 @@
  display: flex;
  justify-content: start;
  flex-wrap: wrap;
+ z-index: 1000;
+
 
  @include responsive(phone){
    justify-content: center;
@@ -156,4 +160,9 @@
   background-color: rgb(235, 236, 240);
   font-size: 1.6rem;
   
+}
+.workspace-theme {
+  background-size: cover;
+  position: absolute;
+  z-index: 100;
 }
