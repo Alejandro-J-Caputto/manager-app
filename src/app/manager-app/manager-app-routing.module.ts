@@ -25,10 +25,11 @@ const routes: Routes = [
       {path: 'workspace/:id', component: WorkspaceViewComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'settings', component: SettingsComponent},
-      {path: '**', redirectTo: 'manager-app'}
+      {path: '**', redirectTo: 'manager-app/home'}
 
-    ]
-  }
+    ],
+  },
+  {path: '**', redirectTo: 'manager-app/home'}
 ];
 
 @NgModule({

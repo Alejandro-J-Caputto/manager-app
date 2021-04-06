@@ -8,7 +8,7 @@
       <div class="form-group">
         <label for="title" class="workspace-form__title-label">Workspace's Name</label>
         <input formControlName="title" type="text" class="workspace-form__title-input" placeholder="Shop lists..">
-        <p class="" *ngIf="isInvalid('title')" >The name is required</p>
+        <p class="error-form" *ngIf="isInvalid('title')" >The name is required</p>
 
       </div>
       <div class="form-group">

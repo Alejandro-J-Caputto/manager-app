@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div data-id="{{todoListID}}" class="todoList-card">
+<div data-id="{{todoListID}}" #todoListCard class="todoList-card">
   <div class="todoList-card__head">
     <input 
     type="text" 
@@ -31,16 +31,22 @@
     <i (click)="todoListModal()" class="fas fa-trash-alt"></i>
   </div>
   <ul class="todoList-card__body">
-    <div *ngFor="let todo of todos" class="todoList-card__body__item">
+    <div #arrTodos (dragleave)="dragLeaveHandler($event)" (drop)="dropHandler($event)" (dragover) = "dragOverHandler($event)" *ngFor="let todo of todos" class="todoList-card__body__item" (cdkDropListDropped)="dragEndHandler($event)">
       <input 
       (keyup.enter)="onChangeTodo(inputChange.value, todo._id)" 
-      #inputChange class="li" value="{{(todo.todo.length > 20 && !isActive) ? (todo.todo | slice:0:24)+'...' : todo.todo}}" 
+      #inputChange class="li" 
+      value="{{(todo.todo.length > 20 && !isActive) ? (todo.todo | slice:0:24)+'...' : todo.todo}}" 
       autocomplete="off" 
       data-id="{{todo._id}}" 
       type="text" cols="30" 
       rows="1" 
-      (click)="handleIsActive()" 
-      class="todo">
+      (click)="handleIsActive()"
+      class="todo"
+      draggable="true"
+      (dragstart)="dragStartHandler($event)"
+      (dragend) = "dragEndHandler($event)"
+      
+      >
       <i (click)="isDone(todo._id)" style="color: green;" *ngIf="todo.done" class="far fa-check-square checkbox"></i>
       <i (click)="isDone(todo._id)"  *ngIf="!todo.done" class="far fa-square done checkbox"></i>
     </div>

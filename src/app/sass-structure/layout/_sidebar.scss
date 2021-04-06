@@ -84,6 +84,7 @@
       // position: fixed;
       padding-top: 0rem;
      flex-direction: row;
+     justify-content: space-between;
     }
     @include responsive(phone) {
       // display: none;

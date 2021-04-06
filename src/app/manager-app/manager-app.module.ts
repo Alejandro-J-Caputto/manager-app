@@ -15,6 +15,7 @@ import { WorkspacesAllComponent } from './pages/workspaces-all/workspaces-all.co
 import { SharedModule } from '../shared/shared.module';
 import { TodolistCardComponent } from './components/todolist-card/todolist-card.component';
 import { WorkspaceAddComponent } from './pages/workspace-add/workspace-add.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -24,10 +25,12 @@ import { WorkspaceAddComponent } from './pages/workspace-add/workspace-add.compo
     ManagerAppRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   exports: [
     DashboardComponent, WorkspaceViewComponent, ProfileComponent, SettingsComponent, NotFoundComponent, HomeComponent, SearchComponent, WorkspacesAllComponent
-  ]
+  ],
+  providers: [WorkspaceViewComponent]
 })
 export class ManagerAppModule { }

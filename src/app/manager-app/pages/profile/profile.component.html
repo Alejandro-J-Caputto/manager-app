@@ -20,26 +20,65 @@
       <div class="profile-content-display">
         <h1 class="heading-primary">PROFILE CONTENT</h1>
         <div class="profile-picture">
-          <img src="assets/img/profile-user.png" alt="">
+          <img #profilePic [src]="userData.img ? userData.img : 'assets/img/profile-user.png'" alt="">
+          <input #profilePicInput type="file" class="profile-picture__file" (change)="loadImagePrevUpload($event)">
+          <i class="fas fa-camera"></i>
         </div>
+
         <div class="profile-form">
-          <form action="" class="profile-form__form">
+          <form [formGroup]="userProfileForm" (ngSubmit)="sendForm()" class="profile-form__form">
             
             <div class="profile-form__form__group">
               <label for="name" class="profile-form__form__label">Name</label>
-              <input  value="{{userData.name}}" type="text" class="profile-form__form__input" required placeholder="Name" id="name">
+              <input  
+                
+                formControlName="name"
+                name="name" 
+                id="name"
+                type="text" 
+                class="profile-form__form__input" 
+                placeholder="{{userData.name}}" 
+                >
+                <p class="error-form"  *ngIf="isInvalid('name')">The name is required</p>
+
             </div>
             <div class="profile-form__form__group">
               <label for="email" class="profile-form__form__label">Email Address</label>
-              <input value="{{userData.email}}" type="text" class="profile-form__form__input" required placeholder="Email Address" id="email">
+              <input 
+
+                type="text" class="profile-form__form__input"  
+                placeholder="{{userData.email}}" 
+                id="email"
+                formControlName="email"  
+                name="email"
+                >
+                <p class="error-form"  *ngIf="isInvalid('email')">The email adress is required</p>
+
             </div>
             <div class="profile-form__form__group">
               <label for="password" class="profile-form__form__label">Password</label>
-              <input type="password" class="profile-form__form__input" placeholder="Password" required id="password">
+              <input 
+                type="password" 
+                class="profile-form__form__input" 
+                placeholder="Password"  
+                id="password"
+                formControlName="password"  
+                name="password" 
+                >
+                <p class="error-form"  *ngIf="isInvalid('password')">The password  is required</p>
+
             </div>
             <div class="profile-form__form__group">
               <label for="passwordConfirm" class="profile-form__form__label">Confirm Password</label>
-              <input type="password" class="profile-form__form__input" placeholder="Confirm Password" required id="passwordConfirm">
+              <input 
+                type="password" 
+                class="profile-form__form__input" 
+                placeholder="Confirm Password"  
+                formControlName="passwordConfirm"  
+                name="passwordConfirm"
+                id="passwordConfirm">
+              <p class="error-form"  *ngIf="isInvalid('passwordConfirm')">The password confirmation doesnt match with the provided password</p>
+
             </div>
             <div class="profile-form__form__group">
               <button class="btn btn--red">UPDATE</button>

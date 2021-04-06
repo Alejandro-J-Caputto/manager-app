@@ -18,12 +18,24 @@ export interface TodoList {
   name: string;
 }
 
+// export interface User {
+//   active: boolean;
+//   _id:    string;
+//   name:   string;
+//   email:  string;
+// }
 export interface User {
-  active: boolean;
-  _id:    string;
-  name:   string;
-  email:  string;
+  role?:     string;
+  active?:   boolean;
+  google?:   boolean;
+  _id?:      string;
+  img?:      string;
+  name?:     string;
+  email?:    string;
+  password?: string;
+  __v?:      number;
 }
+
 
 
 export interface TodoListResponse {

@@ -1,5 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {  Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Draggable, DragTarget } from '../../manager-interfaces/drag-drop.interface';
 import { AddTodoResponse, DeleteTodoList, IsDoneTodo, Todo } from '../../manager-interfaces/managerApp.interface';
+import { WorkspaceViewComponent } from '../../pages/workspace-view/workspace-view.component';
 import { ManagerAppService } from '../../services/manager-app.service';
 
 @Component({
@@ -7,26 +10,32 @@ import { ManagerAppService } from '../../services/manager-app.service';
   templateUrl: './todolist-card.component.html',
   styleUrls: ['./todolist-card.component.scss']
 })
-export class TodolistCardComponent implements OnInit {
-
+export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
+  
+  private workspaceID!:string;
   public isActive:boolean = false;
   get todoLists() {
     return this.managerAppService.globaltodoListTest;
   }
+
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('refOverlay') overlay!:ElementRef<HTMLDivElement>;
   @ViewChild('refModalInput') modalInput!:ElementRef<HTMLInputElement>;
+  @ViewChild('todoListCard') todoListCard!: ElementRef<HTMLDivElement>;
 
   @Input('dataName') name = '';
-  @Input('dataTodos') todos:any = [];
-  @Input('todoListID') todoListID:string = ''
+  @Input('dataTodos') todos:Todo [] = [];
+  @Input('todoListID') todoListID:string = '';
   
 
-  constructor(private managerAppService: ManagerAppService) { }
+  constructor(private managerAppService: ManagerAppService, private activatedRoute: ActivatedRoute, private workSpaceView: WorkspaceViewComponent) {
+    this.workSpaceView.getParam();
+   }
 
   ngOnInit(): void {
     this.scrollUp();
   }
+
   addTodoToList (todo:HTMLInputElement){
     const currentCard = todo.closest('.todoList-card');
     console.log(currentCard!.id)
@@ -45,7 +54,7 @@ export class TodolistCardComponent implements OnInit {
     });
     todo.value = '';
   }
-
+  // CHANGE STATUS TO DONE
   isDone(id:string){
     this.managerAppService.changeIsDoneTodo(id).subscribe((resp:IsDoneTodo)=> {
       this.todos.forEach((todo:Todo, index:number) => {
@@ -62,7 +71,8 @@ export class TodolistCardComponent implements OnInit {
     })
     this.isActive = false;
   }
-  handleIsActive(){
+
+    handleIsActive(){
     this.isActive = true;
   }
 
@@ -115,4 +125,54 @@ export class TodolistCardComponent implements OnInit {
   scrollUp(){
     window.scrollTo(0,0)
   }
+
+  //DRAG
+
+  dragStartHandler(event: any) {
+    console.log('drag start')
+    const todoID = event.target.id;
+    // SET THE TODO ID TO THE HANDLER
+    event.dataTransfer!.setData('text/plain', todoID);
+
+    // ON MOVE
+    event.dataTransfer!.effectAllowed = 'move';
+  }
+
+  dragEndHandler(event:any) {
+    // console.log(event)
+    // console.log('drag end')
+  }
+  //DROP
+  dragOverHandler(event: any) {
+    //VALIDATES THE TYPE OF DATA 
+    if(event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+      event.preventDefault();
+      // console.log('you are over me')
+      this.todoListCard.nativeElement.classList.add('drop-drop')
+    }
+
+  }
+  dragLeaveHandler(event: any) {
+
+    this.todoListCard.nativeElement.classList.remove('drop-drop')
+  }
+
+  dropHandler(event: any) {
+    console.log('dropped');
+    this.todoListCard.nativeElement.classList.remove('drop-drop');
+    const todoID = event.dataTransfer!.getData('text/plain');
+    this.managerAppService.dragDropTodo(todoID, this.todoListID).subscribe((resp:any) => {
+      // this.todos = [...this.todos, resp.updatedTodo];
+      this.workSpaceView.getTodoList();
+    },(error) => {
+      console.log(error)
+    })
+
+    console.log(this.workspaceID)
+  }
+
+
+  //EVENT BINDING
+
+
 }

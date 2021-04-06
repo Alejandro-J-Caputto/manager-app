@@ -14,6 +14,9 @@ export class NavbarMainComponent implements OnInit {
   get workspaces() {
     return this.managerAppService._workspaces;
   }
+  get userData() {
+    return this.managerAppService._authenticatedUser;
+  }
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('refOverlay') overlay!:ElementRef<HTMLDivElement>;
   @ViewChild('refModalInput') modalInput!:ElementRef<HTMLInputElement>;

@@ -18,14 +18,15 @@ export interface LoginResponse {
 }
 
 export interface User {
-  role:     string;
-  active:   boolean;
-  google:   boolean;
-  _id:      string;
-  name:     string;
-  email:    string;
-  password: string;
-  __v:      number;
+  role?:     string;
+  active?:   boolean;
+  google?:   boolean;
+  _id?:      string;
+  img?:      string;
+  name?:     string;
+  email?:    string;
+  password?: string;
+  __v?:      number;
 }
 
 export interface RegisterResponse {
@@ -33,4 +34,19 @@ export interface RegisterResponse {
   message: string;
   token:   string;
   newUser: User;
+}
+
+export interface UpdatedUserResponse {
+  status:     string;
+  updatedUser: UpdatedUser;
+}
+
+export interface UpdatedUser {
+  role:   string;
+  active: boolean;
+  google: boolean;
+  _id:    string;
+  name:   string;
+  email:  string;
+  __v:    number;
 }

@@ -159,3 +159,21 @@
     }
   }
 }
+
+.error-form {
+  border-radius: 12px;
+  background-color: lightcoral;
+  color: white;
+  padding: 1rem;
+  margin-top: 4px;
+
+  
+}
+.auth__error {
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: lightcoral;
+  text-align: center;
+  color: white;
+  width: 90%;
+}
