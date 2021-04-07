@@ -31,6 +31,7 @@
   }
   @include responsive(phone) {
     width: 100%;
+
   }
 }
 
@@ -45,6 +46,7 @@
 .heading-primary {
   align-self: start;
   @include responsive(phone) {
+
    align-self: center;
   }
 }
@@ -54,6 +56,9 @@
   align-self: center;
   // background-color: mediumseagreen;
   width: 80%;
+  & * :not(.profile-picture, .profile-picture img, .error-form){
+    margin-bottom: 2rem;
+  }
 }
 
 // .profile-picture {

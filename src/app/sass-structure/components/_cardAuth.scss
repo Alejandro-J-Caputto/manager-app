@@ -46,7 +46,8 @@
     @include responsive(phone) {
       position: absolute;
       left: 50%;
-      top: 10%;
+      top: 20%;
+
       transform: translate(-50%, -50%);
     }
 
@@ -56,8 +57,8 @@
     height: 20rem;
     width: 20rem;
     @include responsive(phone) {
-      height: 10rem;
-      width: 10rem;
+      height: 15rem;
+      width: 15rem;
 
     }
   }
@@ -69,9 +70,10 @@
     align-items:center;
     justify-content: center;
     flex-direction: column;
+
     
     & h2 {
-      margin-bottom: 3rem;
+      margin-bottom: 7rem;
     }
     @include responsive(phone) {
       flex: 0 0 100%;
@@ -88,9 +90,10 @@
         // margin-bottom: 6rem;
         color: $color-white;
       }
+
       & button {
         align-self: center;
-        width: 15rem;
+        // width: 15rem;
         @include responsive(phone) {
           margin-top: 6rem;
           margin-bottom: 6rem;
@@ -170,10 +173,24 @@
   
 }
 .auth__error {
+  
   padding: 1rem;
   border-radius: 12px;
   background-color: lightcoral;
   text-align: center;
   color: white;
   width: 90%;
+  @include responsive(phone) {
+    align-self: center;
+
+   }
+}
+.auth-card--register  {
+
+  @include responsive(phone) {
+    margin-top: 20rem;
+   }
+   & > h2 {
+    margin-bottom: 3rem;
+   }
 }

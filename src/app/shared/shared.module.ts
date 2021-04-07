@@ -15,6 +15,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     CommonModule,
     RouterModule
   ],
+  providers: [NotificationsComponent],
   exports: [NavbarMainComponent, FooterComponent,ModalComponent, NotificationsComponent]
 })
 export class SharedModule { }

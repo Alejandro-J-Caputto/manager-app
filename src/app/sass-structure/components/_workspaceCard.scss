@@ -19,7 +19,9 @@
   @include responsive(phone) {
     width: 30rem;
     height: 15rem;
-    margin-right: unset;
+    margin-right: 0px;
+    // align-self: center;
+
   }
   &:hover {
 

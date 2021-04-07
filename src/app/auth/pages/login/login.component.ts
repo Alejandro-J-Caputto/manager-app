@@ -14,6 +14,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  public errorApi: string = '';
+
   login:LoginForm = {
     email: '',
     password: ''
@@ -26,19 +28,23 @@ export class LoginComponent implements OnInit {
   }
 
   loginFormTemplate(logForm:NgForm){
+    this.errorApi = '';
     if(logForm.invalid){
       logForm.control.markAllAsTouched();
       Object.values(logForm.controls).map(input => input.markAllAsTouched());
       return;
     }
     if(logForm.valid){
+      console.log(this.login.password)
       this.auth.authLogin(this.login).subscribe((resp:LoginResponse) => {
         if(resp.status === 'success'){
           localStorage.setItem('bearer-todo', resp.token);
           this.auth._user = resp.user;
-          this.router.navigate(['/v2/manager-app/home'])
+          this.router.navigate(['/v2/manager-app/home/workspaces'])
         }
-      }, err => console.log(err));
+      }, err => {
+        this.errorApi = err.error.message;
+      });
     }
   }
 

@@ -9,23 +9,13 @@ import { ManagerAppService } from '../../services/manager-app.service';
 })
 export class HomeComponent implements OnInit {
   public inputFlag!: boolean;
-  get user(){
-    return this.managerApp._authenticatedUser;
-  }
 
-  get userId() {
-    return this.managerApp._authenticatedUser._id;
-  }
-
-  get workspaces() {
-    return this.managerApp._workspaces;
-  }
 
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('refOverlay') overlay!:ElementRef<HTMLDivElement>;
   @ViewChild('refModalInput') modalInput!:ElementRef<HTMLInputElement>;
   constructor(private managerApp:ManagerAppService) { 
-    this.getWorkspaces(`Bearer ${localStorage.getItem('bearer-todo')}`);
+    // this.getWorkspaces(`Bearer ${localStorage.getItem('bearer-todo')}`);
   }
 
   ngOnInit(): void {

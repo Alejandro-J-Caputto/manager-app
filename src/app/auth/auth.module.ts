@@ -8,6 +8,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { MainAuthComponent } from './pages/main-auth/main-auth.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { NotificationsComponent } from '../shared/notifications/notifications.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { RegisterComponent } from './pages/register/register.component';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

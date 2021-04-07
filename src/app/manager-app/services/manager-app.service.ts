@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { TodoListResponse, TodoLists, User, Workspace, WorkspaceResponse } from '../manager-interfaces/managerApp.interface';
+import { NewTodoList, TodoListResponse, TodoLists, User, Workspace, WorkspaceResponse } from '../manager-interfaces/managerApp.interface';
 import { Observable } from 'rxjs';
 import { Form, FormGroup } from '@angular/forms';
 import { RegisterForm, UpdatedUserResponse } from 'src/app/auth/authInterfaces/auth.interface';
@@ -15,16 +15,22 @@ export class ManagerAppService {
 
   public _workspaces:Workspace[] = [];
 
-  public globaltodoListTest:TodoLists[] = [];
+  public globaltodoListTest:TodoLists[] | NewTodoList [] = [];
 
   //TOKEN FROM LOCALSTORAGE PREVIOUSLY STORED AT AUTH PROCESS 
   private apiUrl: string = 'http://localhost:8000/api/todoapp/v1';
 
-  private token: string = `Bearer ${localStorage.getItem('bearer-todo')}`;
+  public token!: string;
 
   private headers:HttpHeaders = new HttpHeaders().set('Authorization', this.token);
 
-  constructor(private http: HttpClient) {}
+  public isRendered: boolean = false;
+
+  constructor(private http: HttpClient) {
+    
+    console.log(this.token)
+    console.log('me dispare')
+  }
   //Get all the workspaces current user
   getWorkspace(idUser:string):Observable<WorkspaceResponse> | any {
     const url = `${this.apiUrl}/workspace`
@@ -32,10 +38,10 @@ export class ManagerAppService {
     const headers = new HttpHeaders()
       .set('Authorization', idUser)
         // return this.http.get<WorkspaceResponse>(url, {headers})
-      if(this.token){
+      
 
         return this.http.get<WorkspaceResponse>(url, {headers})
-      } 
+    
   }
 
   //Creates a workpacee at Sidebar.component
@@ -45,8 +51,10 @@ export class ManagerAppService {
       title: form.title,
       img: form.theme
     }
-    // const headers = new HttpHeaders().set('Authorization', this.token);
-    return this.http.post(`${this.apiUrl}/workspace`, body, {headers:this.headers});
+    // console.log(this.headers)
+
+    const headers = new HttpHeaders().set('Authorization', this.token);
+    return this.http.post(`${this.apiUrl}/workspace`, body, {headers:headers});
   }
 
   getTodoListsByWorkspaceId(id:string):Observable<TodoListResponse> {

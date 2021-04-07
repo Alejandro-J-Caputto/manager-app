@@ -1,23 +1,23 @@
 .overlay {
   position: absolute;
-  min-height: 130%;
+  min-height: 100%;
   width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-  z-index: 5; }
+  z-index: 1000; }
 
 .modal {
-  height: 40rem;
-  width: 70rem;
+  height: 50%;
+  width: 70%;
    background-image: linear-gradient(
     to right bottom,
     rgba($color-angular-blue-light, 0.6),
     rgba($color-angular-blue-dark, 0.4)
   );
-  z-index: 10;
+  z-index: 2000;
   position: absolute;
   border-radius: 14px;
   position: absolute;
@@ -51,16 +51,34 @@
   }
 }
 .modal__button {
+
   padding: 2rem;
   align-self: center;
+  @include responsive(phone) {
+    display: flex;
+    flex-direction: column;
+    // background-color: yellowgreen;
+    flex-grow: 1;
+  }
+
   & button:not(:last-child) {
     margin-right: 5rem;
+  @include responsive(phone) {
+    margin-right: 0rem;
+  }
+
   }
   &--confirm {
     background-color: $color-green-dark;
   }
   &--cancel {
     background-color: $color-angular-darker;
+  }
+  &--confirm, &--cancel {
+  @include responsive(phone) {
+    
+  }
+
   }
 }
 .modal__close {

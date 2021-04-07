@@ -64,7 +64,7 @@
     bottom: 8%;
   }
   @include responsive(phone) {
-    // display: none;
+    display: none;
     position: fixed;
     width: 100%;
     bottom: 6%;

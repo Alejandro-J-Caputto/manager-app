@@ -1,1 +1,10 @@
-<p>notifications works!</p>
+<div #notification class="notification notification--hidden">
+  <div class="notification__action">
+    <i class="{{icon}}"></i>
+  </div>
+  <div class="notifation__body">
+    <div class="notification__message">
+      <p *ngIf="text">{{text}}</p>
+    </div>
+  </div>
+</div>

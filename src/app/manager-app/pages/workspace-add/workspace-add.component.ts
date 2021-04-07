@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
 
@@ -22,7 +23,7 @@ export class WorkspaceAddComponent implements OnInit {
   //THEME HOLDS THE URL FROM CLOUDINARY
 
 
-  constructor(private fb:FormBuilder, private managerAppService:ManagerAppService) { }
+  constructor(private fb:FormBuilder, private managerAppService:ManagerAppService, private activatedRoute:Router) { }
 
   ngOnInit(): void {
   }
@@ -33,8 +34,16 @@ export class WorkspaceAddComponent implements OnInit {
       return;
     }
     this.managerAppService.createWorkspace(this.workspaceForm.value).subscribe((resp:WorkspaceResponse) => {
-      console.log(resp.status);
-      this.managerAppService._workspaces = [...this.managerAppService._workspaces, resp.workspace[resp.workspace.length -1]]
+      console.log(resp)
+      if(resp.status === 'success') {
+       
+          this.managerAppService._workspaces = [...this.managerAppService._workspaces, resp.workspace[resp.workspace.length -1]]
+          this.activatedRoute.navigateByUrl('/v2/manager-app/home/workspaces')
+        }
+
+      
+    }, (error) => {
+      console.log(error)
     } )
 
     this.workspaceForm.setValue({

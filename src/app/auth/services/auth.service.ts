@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginForm, LoginResponse, RegisterForm, RegisterResponse, User } from '../authInterfaces/auth.interface';
+import { ManagerAppService } from 'src/app/manager-app/services/manager-app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
   // private token: string = `Bearer ${localStorage.getItem('bearer-todo')}`
   private apiUrl: string = 'http://localhost:8000/api/todoapp/v1/auth';
   
-  constructor(private http:HttpClient, private router: Router) {
+  constructor(private http:HttpClient, private router: Router, private managerAppService: ManagerAppService) {
 
    }
 
@@ -37,7 +38,8 @@ export class AuthService {
    authLogOut(){
     localStorage.setItem('bearer-todo', 'logout');
     localStorage.removeItem('work-active')
-    
+    // this.managerAppService.token = '';
+    this.managerAppService._workspaces = [];
     this.router.navigate(['/auth/login'])
    }
 

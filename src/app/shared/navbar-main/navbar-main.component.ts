@@ -9,7 +9,9 @@ import { ManagerAppService } from 'src/app/manager-app/services/manager-app.serv
   styleUrls: ['./navbar-main.component.scss']
 })
 export class NavbarMainComponent implements OnInit {
-
+  get isRendered () {
+    return this.managerAppService.isRendered;
+  }
   public inputFlag: boolean = false
   get workspaces() {
     return this.managerAppService._workspaces;

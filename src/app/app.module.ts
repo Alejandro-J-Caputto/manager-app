@@ -10,6 +10,7 @@ import { ManagerAppModule } from './manager-app/manager-app.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { NotificationsComponent } from './shared/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import { SharedModule } from './shared/shared.module';
     DragDropModule
 
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

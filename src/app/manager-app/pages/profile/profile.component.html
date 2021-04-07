@@ -1,18 +1,18 @@
 <div class="section-profile">
   <div class="profile-menu">
-    <div class="sidebar-profile">
+    <div class="sidebar-profile hidden">
       <ul class="sidebar-profile__list">
         <li class="sidebar-profile__list__item">
-          <a class="sidebar-profile__link" href="" >USER DATA</a>
+          <a class="sidebar-profile__link" href="#" >USER DATA</a>
         </li>
         <li class="sidebar-profile__list__item">
-          <a class="sidebar-profile__link" href="" >placeholder</a>
+          <a class="sidebar-profile__link" href="#" >placeholder</a>
         </li>
         <li class="sidebar-profile__list__item">
-          <a class="sidebar-profile__link" href="" >placeholder</a>
+          <a class="sidebar-profile__link" href="#" >placeholder</a>
         </li>
         <li class="sidebar-profile__list__item">
-          <a class="sidebar-profile__link" href="" >placeholder</a>
+          <a class="sidebar-profile__link" href="#" >placeholder</a>
         </li>
       </ul>
     </div>
@@ -20,7 +20,7 @@
       <div class="profile-content-display">
         <h1 class="heading-primary">PROFILE CONTENT</h1>
         <div class="profile-picture">
-          <img #profilePic [src]="userData.img ? userData.img : 'assets/img/profile-user.png'" alt="">
+          <img #profilePic [src]="userData.img ? userData.img : 'assets/img/user-img-default.png'" alt="">
           <input #profilePicInput type="file" class="profile-picture__file" (change)="loadImagePrevUpload($event)">
           <i class="fas fa-camera"></i>
         </div>

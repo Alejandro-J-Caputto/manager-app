@@ -51,7 +51,7 @@ export interface TodoLists {
   project: Project;
   user:    User;
   __v:     number;
-  todos?:   Todo[];
+  todos:   Todo[];
 }
 
 export interface Project {

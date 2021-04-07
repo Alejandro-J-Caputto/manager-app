@@ -4,7 +4,7 @@ display: flex;
 flex-direction: column;
 min-height: 100vh;
 // flex: 1;
-// background-color: lightcoral;
+// background-color: rgba($color-angular-blue-light, .4);
 @include responsive(tab-land) {
   height: fit-content;
 }
@@ -52,7 +52,8 @@ min-height: 100vh;
   flex-wrap: wrap;
   justify-content: center;
   @include responsive(phone) {
-    justify-content: center;
+    // justify-content: center;
+
     margin-top: 5rem;
   }
 }
@@ -99,7 +100,7 @@ min-height: 100vh;
   font-family: inherit;
   padding: 2rem;
   border-radius: 15px;
-
+  background-color: $color-grey-light-2;
 }
 
 .grid__search {
@@ -119,6 +120,8 @@ min-height: 100vh;
 
 }
 .search-group__input {
+  width: 80%;
+  align-self: center;
   padding: 2rem 3rem;
   border-radius: 14px;
   font-size: inherit;
@@ -136,4 +139,8 @@ min-height: 100vh;
   // background-color: lightcoral;
   // align-items: center;
   padding: 2rem;
+}
+.workspace-empty {
+  justify-content: center;
+  align-self: center;
 }

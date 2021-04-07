@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TodoListResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
@@ -8,9 +8,10 @@ import { ManagerAppService } from '../../services/manager-app.service';
   templateUrl: './workspace-view.component.html',
   styleUrls: ['./workspace-view.component.scss']
 })
-export class WorkspaceViewComponent implements OnInit {
+export class WorkspaceViewComponent implements OnInit, OnDestroy {
 
   private workspaceID!:string;
+  
   public theme!: string;
   public get todoLists() {
     return [...this.managerAppService.globaltodoListTest];
@@ -20,9 +21,13 @@ export class WorkspaceViewComponent implements OnInit {
     this.getParam();
     this.getTodoList();
     this.getTheme();
+    this.setNavbarLink();
    }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy(): void {
+    this.setNavbarLink();
   }
   getParam(){
     this.activatedRoute.params.subscribe(params => {
@@ -57,7 +62,9 @@ export class WorkspaceViewComponent implements OnInit {
     } )
   }
 
-  
+  setNavbarLink() {
+    this.managerAppService.isRendered = !this.managerAppService.isRendered ? this.managerAppService.isRendered = true : this.managerAppService.isRendered = false;
+  }
   styles() {
     return {
       'background-image': 'url('+ this.theme +')',
