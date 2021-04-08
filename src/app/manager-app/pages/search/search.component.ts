@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
+import { WorkspacesAllComponent } from '../workspaces-all/workspaces-all.component';
 
 @Component({
   selector: 'app-search',
@@ -14,19 +16,23 @@ export class SearchComponent implements OnInit {
   get workspaces(){
     return this.managerAppService._workspaces;
   }
-  public filteredWorkspaces = [...this.workspaces];
+  get filteredWorkspaces() {
+    return [...this.workspaces];} 
+  set filteredWorkspaces(val) {
 
+  }
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('searchInput') searchInput!:ElementRef<HTMLInputElement>;
 
-  constructor(private managerAppService: ManagerAppService) {
-    console.log(this.filteredWorkspaces)
+  constructor(private managerAppService: ManagerAppService, private workspaceAll: WorkspacesAllComponent) {
+
+    // this.checkWorkspaces();
   }
 
   ngOnInit(): void {
   }
 
-  search(val: string): void {
+   search(val: string):void {
 
     const query = val.trim().toLowerCase();
     this.notMatch = false;
@@ -41,6 +47,14 @@ export class SearchComponent implements OnInit {
 
     if(!this.filteredWorkspaces.length) {
       this.notMatch = true;
+    }
+  }
+  checkWorkspaces() {
+    if(!this.workspaces.length) {
+     this.managerAppService.getWorkspace(`Bearer ${localStorage.getItem('bearer-todo')}`).subscribe((resp:WorkspaceResponse) => {
+       console.log(resp)
+      this.managerAppService._workspaces = [...resp.workspace];
+     } )
     }
   }
   

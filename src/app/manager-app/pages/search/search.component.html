@@ -1,7 +1,7 @@
 <div class="grid__search">
   <div class="search-group">
-    <!-- <label for="search" class="search-group__label">Search by "Workspace"</label> -->
-    <input #searchInput (keyup)="search(searchInput.value)" type="text" id="search" class="search-group__input" placeholder="Search...">
+    <input #searchInput (keyup)="search(searchInput.value)" type="text" id="search" class="workspace-form__title-input" placeholder="Search...">
+    <label for="search" class="workspace-form__title-label">Search...</label>
     <p *ngIf="notMatch" class="search__fail"> This workspace doesn't exist </p>
   </div>
   <div *ngIf="!!!searching" class="grid__workspace">

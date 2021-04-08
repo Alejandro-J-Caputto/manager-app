@@ -10,7 +10,7 @@ export class NotifyService {
   constructor() { }
   
 
-  getMessage( action: 'registration' | 'login' | 'delete' | 'loading' | 'wuops' | 'searching') {
+  getMessage( action: 'registration' | 'login' | 'delete' | 'loading' | 'wuops' | 'searching' | 'create' | 'update', text?:string) {
 
     switch (action) {
       case 'registration':
@@ -26,6 +26,11 @@ export class NotifyService {
           this.text = 'Succesfully Logged In';
           this.icon = 'far fa-check-circle'
         break;
+
+      case 'update':
+          this.text = `${text ? text : 'Succesfully Logged In'}`;
+          this.icon = 'far fa-check-circle'
+        break;
       
       case 'loading':
           this.text = 'Succesfully registered';
@@ -33,13 +38,17 @@ export class NotifyService {
         break;
       
       case 'wuops':
-          this.text = 'There was a problem';
+          this.text = `${text ? text : 'there was a problem'}`;
           this.icon = 'fas fa-exclamation-circle'
         break;
       
       case 'registration':
           this.text = 'Searching';
           this.icon = 'fas fa-spinner fa-pulse'
+        break;
+      case 'create':
+          this.text = 'Workspace sucesfully created!';
+          this.icon = 'far fa-check-circle'
         break;
       
       default:

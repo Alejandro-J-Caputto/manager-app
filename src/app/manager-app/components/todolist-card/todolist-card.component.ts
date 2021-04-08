@@ -38,13 +38,13 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
 
   addTodoToList (todo:HTMLInputElement){
     const currentCard = todo.closest('.todoList-card');
-    console.log(currentCard!.id)
-
+    //TODO
     //Work around for an issue, dont like it must be refactired. 
     if(this.todos === undefined) {
       this.todos = []
     }
      this.managerAppService.createTodo(todo.value, currentCard!.id).subscribe((resp:AddTodoResponse) => {
+       console.log('hello')
       if(this.todos.length) {
         this.todos = [...this.todos, resp.newTodo]
       }
@@ -62,12 +62,16 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
           todo.done = resp.todoDone.done
         }
       })
+    }, (error) => {
+      console.log(error)
     })
   }
 
   onChangeTodo(val:string, idCard:string){
     this.managerAppService.patchTodo(val, idCard).subscribe((resp) => {
       // console.log(resp)
+    }, (error) => {
+      console.log(error)
     })
     this.isActive = false;
   }
@@ -77,7 +81,7 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
   }
 
   changeTodoListName(updateName:string) {
-    console.log(updateName)
+    // console.log(updateName)
     this.managerAppService.patchTodoListName(updateName, this.todoListID)
       .subscribe(resp => {
         console.log(resp)
@@ -129,7 +133,7 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
   //DRAG
 
   dragStartHandler(event: any) {
-    console.log('drag start')
+    // console.log('drag start')
     const todoID = event.target.id;
     // SET THE TODO ID TO THE HANDLER
     event.dataTransfer!.setData('text/plain', todoID);
@@ -158,7 +162,7 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
   }
 
   dropHandler(event: any) {
-    console.log('dropped');
+    // console.log('dropped');
     this.todoListCard.nativeElement.classList.remove('drop-drop');
     const todoID = event.dataTransfer!.getData('text/plain');
     this.managerAppService.dragDropTodo(todoID, this.todoListID).subscribe((resp:any) => {
@@ -168,7 +172,7 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
       console.log(error)
     })
 
-    console.log(this.workspaceID)
+    // console.log(this.workspaceID)
   }
 
 

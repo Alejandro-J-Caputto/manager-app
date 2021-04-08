@@ -1,4 +1,5 @@
 <div class="section-profile">
+  <app-notifications></app-notifications>
   <div class="profile-menu">
     <div class="sidebar-profile hidden">
       <ul class="sidebar-profile__list">
@@ -18,17 +19,17 @@
     </div>
     <div class="profile-content">
       <div class="profile-content-display">
-        <h1 class="heading-primary">PROFILE CONTENT</h1>
         <div class="profile-picture">
           <img #profilePic [src]="userData.img ? userData.img : 'assets/img/user-img-default.png'" alt="">
           <input #profilePicInput type="file" class="profile-picture__file" (change)="loadImagePrevUpload($event)">
           <i class="fas fa-camera"></i>
         </div>
-
+        
         <div class="profile-form">
-          <form [formGroup]="userProfileForm" (ngSubmit)="sendForm()" class="profile-form__form">
+          <form [formGroup]="userProfileForm" (ngSubmit)="sendFormUser()" class="profile-form__form">
             
             <div class="profile-form__form__group">
+              <h2>PROFILE CONTENT</h2>
               <label for="name" class="profile-form__form__label">Name</label>
               <input  
                 
@@ -69,6 +70,44 @@
 
             </div>
             <div class="profile-form__form__group">
+              <button class="btn btn--red">UPDATE</button>
+            </div>
+          </form>
+
+        </div>
+        <div class="profile-form">
+          <form [formGroup]="resetPassForm" (ngSubmit)="resetPasswordForm()" class="profile-form__form">
+            
+        
+            <div class="profile-form__form__group">
+              <h2>RESET PASSWORD</h2>
+              <label for="password" class="profile-form__form__label">Current Password</label>
+              <input 
+                type="password" 
+                class="profile-form__form__input" 
+                placeholder="Password"  
+                id="passwordCurrent"
+                formControlName="password"  
+                name="passwordCurrent" 
+                >
+                <p class="error-form"  *ngIf="isInvalidReset('password')">The current password  is required</p>
+
+            </div>
+            <div class="profile-form__form__group">
+              
+              <label for="password" class="profile-form__form__label">New Password</label>
+              <input 
+                type="password" 
+                class="profile-form__form__input" 
+                placeholder="Password"  
+                id="passwordReset"
+                formControlName="passwordReset"  
+                name="passwordReset" 
+                >
+                <p class="error-form"  *ngIf="isInvalidReset('passwordReset')">The new password  is required</p>
+
+            </div>
+            <div class="profile-form__form__group">
               <label for="passwordConfirm" class="profile-form__form__label">Confirm Password</label>
               <input 
                 type="password" 
@@ -77,11 +116,11 @@
                 formControlName="passwordConfirm"  
                 name="passwordConfirm"
                 id="passwordConfirm">
-              <p class="error-form"  *ngIf="isInvalid('passwordConfirm')">The password confirmation doesnt match with the provided password</p>
+              <p class="error-form"  *ngIf="isInvalidReset('passwordConfirm')">The password confirmation doesnt match with the provided password</p>
 
             </div>
             <div class="profile-form__form__group">
-              <button class="btn btn--red">UPDATE</button>
+              <button class="btn btn--red">UPDATE PASSWORD</button>
             </div>
           </form>
 

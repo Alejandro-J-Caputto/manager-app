@@ -31,7 +31,7 @@ export class NotificationsComponent implements OnInit{
     console.log('me dispare')
     // this.notify.nativeElement.classList.toggle('notification--hidden');
     const notification = document.querySelector('.notification');
-    notification?.classList.remove('notification--hidden');
+    notification?.classList.toggle('notification--hidden');
   }
 
 }

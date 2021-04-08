@@ -31,6 +31,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   exports: [
     DashboardComponent, WorkspaceViewComponent, ProfileComponent, SettingsComponent, NotFoundComponent, HomeComponent, SearchComponent, WorkspacesAllComponent
   ],
-  providers: [WorkspaceViewComponent]
+  providers: [WorkspaceViewComponent, WorkspacesAllComponent]
 })
 export class ManagerAppModule { }

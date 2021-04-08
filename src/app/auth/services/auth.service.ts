@@ -10,7 +10,7 @@ import { ManagerAppService } from 'src/app/manager-app/services/manager-app.serv
 })
 export class AuthService {
   public _user!: User;
-
+  // public _token: string = `${localStorage.getItem('bearer-todo') === 'logout' ? 'logout' : `Bearer ${localStorage.getItem('bearer-todo')}`}`;
   get user () {
     return {...this._user}
   }
@@ -45,7 +45,9 @@ export class AuthService {
 
    checkToken():Observable<LoginResponse>{
     const url = `${this.apiUrl}/checkToken`
-    const token = `Bearer ${localStorage.getItem('bearer-todo')}`
+    // const token = `Bearer ${localStorage.getItem('bearer-todo')}`
+    const token = `${this.managerAppService.token}`
+    console.log(token)
     const headers = new HttpHeaders()
       .set('Authorization', token);
     return this.http.get<LoginResponse>(url, {headers})

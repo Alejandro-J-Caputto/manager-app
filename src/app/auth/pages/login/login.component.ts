@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ManagerAppService } from 'src/app/manager-app/services/manager-app.service';
+import { NotifyService } from 'src/app/manager-app/services/notify.service';
+import { NotificationsComponent } from 'src/app/shared/notifications/notifications.component';
 import { LoginForm, LoginResponse } from '../../authInterfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
 
@@ -22,7 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private auth: AuthService, private router: Router) { }
+
+  constructor(private auth: AuthService, private router: Router, private notifyService: NotifyService, private notification: NotificationsComponent,private managerApp:ManagerAppService) { }
   
   ngOnInit(): void {
   }
@@ -38,11 +44,20 @@ export class LoginComponent implements OnInit {
       console.log(this.login.password)
       this.auth.authLogin(this.login).subscribe((resp:LoginResponse) => {
         if(resp.status === 'success'){
-          localStorage.setItem('bearer-todo', resp.token);
+          // this.auth._token = resp.token;
+          this.managerApp.token = `Bearer ${resp.token}`;
+          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
+          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
           this.auth._user = resp.user;
-          this.router.navigate(['/v2/manager-app/home/workspaces'])
+          this.notifyService.getMessage('login');
+          this.notification.toggleNotification();
+          setTimeout(() => {
+            
+            this.router.navigate(['/v2/manager-app/home/workspaces'])
+          }, 3000);
         }
       }, err => {
+        console.log(err)
         this.errorApi = err.error.message;
       });
     }

@@ -1,8 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdatedUserResponse } from 'src/app/auth/authInterfaces/auth.interface';
+import { NotificationsComponent } from 'src/app/shared/notifications/notifications.component';
+import { EqualPass } from '../../manager-interfaces/checkpass.interface';
 
 import { ManagerAppService } from '../../services/manager-app.service';
+import { NotifyService } from '../../services/notify.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,28 +20,39 @@ export class ProfileComponent implements OnInit {
   }
 
   userProfileForm: FormGroup  = this.fb.group({
-    name: [this.userData.name, [ Validators.minLength(3)]],
-    email: [this.userData.email, [ Validators.email]],
+    name: [this.userData.name, [Validators.required, Validators.minLength(3)]],
+    email: [this.userData.email, [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
-    passwordConfirm: ['', [Validators.required]]
   })
 
-  constructor(private managerAppService:ManagerAppService, private fb: FormBuilder) { }
+  resetPassForm:FormGroup = this.fb.group({
+    password: ['', [Validators.required, Validators.minLength(5)]],
+    passwordReset: ['', [Validators.required, Validators.minLength(5)]], 
+    passwordConfirm: ['', [Validators.required, Validators.minLength(5)]], 
+  })
+
+  constructor(
+    private managerAppService:ManagerAppService, 
+    private fb: FormBuilder,
+    private notifyService: NotifyService,
+    private notifications: NotificationsComponent
+    ) { }
 
   ngOnInit(): void {
     console.log(this.userData)
   }
 
-  customValidator() {
+  // customValidator() {
 
-    return () => {
-      if(this.userProfileForm.controls.password.value === this.userProfileForm.controls.passwordConfirm.value) {
-        return true
-      } else {
-        return {status:'false', message: 'The password doesnt match'}
-      }
-    }
-  }
+  //   return () => {
+  //     if(this.userProfileForm.controls.password.value === this.userProfileForm.controls.passwordConfirm.value) {
+  //       return true
+  //     } else {
+  //       return {status:'false', message: 'The password doesnt match'}
+  //     }
+  //   }
+  // }
+    
 
   loadImagePrevUpload(e:any) {
     if(e.target.files) {
@@ -60,42 +74,82 @@ export class ProfileComponent implements OnInit {
     return this.userProfileForm.controls[input].errors 
             && this.userProfileForm.controls[input].touched
   }
+  isInvalidReset(input:string) {
+    return this.resetPassForm.controls[input].errors 
+            && this.resetPassForm.controls[input].touched
+  }
 
-  sendForm() {
+  sendFormUser() {
     console.log(this.userProfileForm.controls.password.value)
     if(this.userProfileForm.invalid) {
       this.userProfileForm.markAllAsTouched()
       return;
     }
-    if(equalPass(this.userProfileForm.controls.password.value, this.userProfileForm.controls.passwordConfirm.value)) {
-      this.userProfileForm.controls.password.invalid
-      this.userProfileForm.controls.passwordConfirm.invalid
-      return;
-    }
+    
     console.log(this.userProfileForm)
     console.log(this.userProfileForm.value)
 
     this.managerAppService.patchUserData(this.userProfileForm.value).subscribe((resp: UpdatedUserResponse) => {
       console.log(resp)
        if(resp.status === 'success') {
-         console.log('patata')
-         this.managerAppService._authenticatedUser = resp.updatedUser;
+          this.notifyService.getMessage('update', 'Your data was sucesfully updated')
+          this.notifications.toggleNotification();
+          setTimeout(() => {
+            this.notifications.toggleNotification();
+            this.managerAppService._authenticatedUser = resp.updatedUser;
+          }, 1500);
        }
     }, (error => {
-      console.log(error)
+      if(error) {
+        console.log(error)
+        this.notifyService.getMessage('wuops', error.error.message)
+        this.notifications.toggleNotification()
+        setTimeout(() => {
+          this.notifications.toggleNotification();
+        }, 3000);
+      }
     }))
 
+    this.userProfileForm.controls.password.reset();
+  }
+
+  resetPasswordForm() {
+
+
+    if(this.resetPassForm.invalid) {
+      this.resetPassForm.markAllAsTouched();
+      return
+    }
+    console.log('hello')
+    
+    if(this.resetPassForm.valid && this.resetPassForm.controls.passwordReset.value !== this.resetPassForm.controls.passwordConfirm.value) {
+      this.resetPassForm.controls.passwordReset.setValue('');
+      this.resetPassForm.controls.passwordConfirm.setValue('');
+      return;
+    }
+
+    this.managerAppService.resetUserPass(this.resetPassForm.value).subscribe(resp => {
+      this.notifications.toggleNotification();
+      this.notifyService.getMessage('update', 'Password sucesfully updated');
+      setTimeout(() => {
+        this.notifications.toggleNotification();
+      }, 2000);
+    }, (error) => {
+      if(error.error.message === "The password is not correct") {
+        this.notifyService.getMessage('wuops', 'The current password is not correct')
+      } else {
+        this.notifyService.getMessage('wuops', 'The passwords doesnt match one with each other')
+      }
+      this.notifications.toggleNotification();
+      setTimeout(() => {
+        this.notifications.toggleNotification();
+      }, 2000);
+
+    })
+
+    
 
   }
 
-}
-
-export const equalPass = (pass1:string, pass2:string) => {
-
-  if(pass1 !== pass2) {
-    return true;
-  } else {
-    return false;
-  }
 
 }

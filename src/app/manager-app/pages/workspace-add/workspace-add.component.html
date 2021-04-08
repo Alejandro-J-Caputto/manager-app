@@ -1,3 +1,4 @@
+<app-notifications></app-notifications>
 <div class="grid__add">
   <div class="grid___heading">
     <h2 class="">CREATE A WORKSPACE</h2>
@@ -6,8 +7,8 @@
   <div class="add__form">
     <form [formGroup]="workspaceForm" (ngSubmit)="sendForm()" autocomplete="off" class="workspace-form">
       <div class="form-group">
+        <input formControlName="title" type="text" class="workspace-form__title-input" placeholder="Workspace's Name">
         <label for="title" class="workspace-form__title-label">Workspace's Name</label>
-        <input formControlName="title" type="text" class="workspace-form__title-input" placeholder="Shop lists..">
         <p class="error-form" *ngIf="isInvalid('title')" >The name is required</p>
 
       </div>

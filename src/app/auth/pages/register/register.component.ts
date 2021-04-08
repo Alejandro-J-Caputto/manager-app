@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ManagerAppService } from 'src/app/manager-app/services/manager-app.service';
 import { NotifyService } from 'src/app/manager-app/services/notify.service';
 import { NotificationsComponent } from 'src/app/shared/notifications/notifications.component';
 import { RegisterResponse } from '../../authInterfaces/auth.interface';
@@ -33,7 +35,7 @@ export class RegisterComponent implements OnInit {
     passwordConfirm: ['', Validators.required]
   })
 
-  constructor(private fb:FormBuilder, private notifyService: NotifyService, private auth: AuthService, private router: Router, private notification: NotificationsComponent) { }
+  constructor(private fb:FormBuilder, private notifyService: NotifyService, private auth: AuthService, private router: Router, private notification: NotificationsComponent, private managerApp:ManagerAppService) { }
 
   ngOnInit(): void {
   }
@@ -65,8 +67,11 @@ export class RegisterComponent implements OnInit {
     this.auth.authRegister(this.registerForm.value).subscribe((resp:RegisterResponse) => {
 
       if(resp.status === 'success'){
+        this.managerApp.token = `Bearer ${resp.token}`;
+        this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
 
-        localStorage.setItem('bearer-todo', resp.token);
+        // this.auth._token = resp.token;
+        localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
         console.log(resp.newUser)
         console.log(resp.token)
         this.auth._user = resp.newUser;

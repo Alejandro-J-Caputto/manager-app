@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
 
@@ -21,10 +22,9 @@ export class WorkspacesAllComponent implements OnInit {
   }
 
   constructor(private managerAppService: ManagerAppService) { 
-    this.managerAppService.token = `Bearer ${localStorage.getItem('bearer-todo')}`;
+    // this.managerAppService.token = `Bearer ${localStorage.getItem('bearer-todo')}`;
+    console.log(this.managerAppService.token)
     this.getWorkspaces(this.managerAppService.token);
-    
-    console.log(this.workspaces)
 
   }
   
