@@ -81,6 +81,7 @@ export interface NewTodoList {
   name:    string;
   project: Project;
   user:    User;
+  todos:  Todo[];
   __v:     number;
 }
 

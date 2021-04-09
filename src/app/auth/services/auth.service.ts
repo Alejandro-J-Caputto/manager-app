@@ -17,7 +17,7 @@ export class AuthService {
   
   
   // private token: string = `Bearer ${localStorage.getItem('bearer-todo')}`
-  private apiUrl: string = 'http://localhost:8000/api/todoapp/v1/auth';
+  private apiUrl: string = 'https://manager-app-v2.herokuapp.com/api/todoapp/v1/auth';
   
   constructor(private http:HttpClient, private router: Router, private managerAppService: ManagerAppService) {
 

@@ -17,7 +17,7 @@ export class ManagerAppService {
   public globaltodoListTest:TodoLists[] | NewTodoList [] = [];
 
   //TOKEN FROM LOCALSTORAGE PREVIOUSLY STORED AT AUTH PROCESS 
-  private apiUrl: string = 'http://localhost:8000/api/todoapp/v1';
+  private apiUrl: string = 'https://manager-app-v2.herokuapp.com/api/todoapp/v1';
 
   public token!: string;
 
