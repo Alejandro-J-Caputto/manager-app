@@ -20,31 +20,31 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getWorkspaces(token:string){
-    this.managerApp.getWorkspace(token).subscribe((resp:WorkspaceResponse )=> {
-      this.managerApp._workspaces = resp.workspace;
-    });
-  }
+  // getWorkspaces(){
+  //   this.managerApp.getWorkspace().subscribe((resp:WorkspaceResponse )=> {
+  //     this.managerApp._workspaces = resp.workspace;
+  //   });
+  // }
 
-  onAddWorkspace(){
-    const modalElement = this.modal.nativeElement;
-    const overlay = this.overlay.nativeElement;
+  // onAddWorkspace(){
+  //   const modalElement = this.modal.nativeElement;
+  //   const overlay = this.overlay.nativeElement;
 
-    modalElement.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-    document.addEventListener('keydown', (e) => {
-      if( e.key === 'Escape' && !modalElement.classList.contains('hidden')){
-        this.closeModal();
-      }
-    })
-  }
+  //   modalElement.classList.remove('hidden');
+  //   overlay.classList.remove('hidden');
+  //   document.addEventListener('keydown', (e) => {
+  //     if( e.key === 'Escape' && !modalElement.classList.contains('hidden')){
+  //       this.closeModal();
+  //     }
+  //   })
+  // }
 
-  closeModal(): void {
-    const modalElement = this.modal.nativeElement;
-    const overlay = this.overlay.nativeElement;
-    modalElement.classList.add('hidden');
-    overlay.classList.add('hidden'); 
-  }
+  // closeModal(): void {
+  //   const modalElement = this.modal.nativeElement;
+  //   const overlay = this.overlay.nativeElement;
+  //   modalElement.classList.add('hidden');
+  //   overlay.classList.add('hidden'); 
+  // }
 
   // onGetTitle(val:string):void {
 

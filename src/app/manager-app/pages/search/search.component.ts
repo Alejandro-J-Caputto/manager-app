@@ -9,37 +9,37 @@ import { WorkspacesAllComponent } from '../workspaces-all/workspaces-all.compone
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
-  public searching:boolean = false;
-  public notMatch:boolean = false;
-
+  
   get workspaces(){
     return this.managerAppService._workspaces;
   }
-  get filteredWorkspaces() {
-    return [...this.workspaces];} 
-  set filteredWorkspaces(val) {
+  public searching:boolean = false;
+  public notMatch:boolean = false;
+  public filteredWorkspaces =  this.workspaces
 
-  }
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('searchInput') searchInput!:ElementRef<HTMLInputElement>;
 
   constructor(private managerAppService: ManagerAppService, private workspaceAll: WorkspacesAllComponent) {
-
-    // this.checkWorkspaces();
+    this.workspaceAll.getWorkspaces();
+    // this.managerAppService.setWorkspace(this.workspaceAll.workspaces);
   }
 
   ngOnInit(): void {
   }
-
    search(val: string):void {
 
     const query = val.trim().toLowerCase();
+
+    console.log(query)
     this.notMatch = false;
     this.searching = true;
     this.filteredWorkspaces = this.workspaces.filter(el => el.title.toLowerCase().includes(query))
+    console.log(this.filteredWorkspaces)
     if(this.searchInput.nativeElement.value === '') {
       this.filteredWorkspaces = this.workspaces;
+    } else {
+      this.filteredWorkspaces;
     }
     setTimeout(() => {
       this.searching = false;
@@ -49,13 +49,6 @@ export class SearchComponent implements OnInit {
       this.notMatch = true;
     }
   }
-  checkWorkspaces() {
-    if(!this.workspaces.length) {
-     this.managerAppService.getWorkspace(`Bearer ${localStorage.getItem('bearer-todo')}`).subscribe((resp:WorkspaceResponse) => {
-       console.log(resp)
-      this.managerAppService._workspaces = [...resp.workspace];
-     } )
-    }
-  }
+  
   
 }

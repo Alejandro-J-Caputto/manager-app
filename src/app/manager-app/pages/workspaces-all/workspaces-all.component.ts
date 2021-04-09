@@ -13,7 +13,6 @@ export class WorkspacesAllComponent implements OnInit {
   get user(){
     return this.managerAppService._authenticatedUser;
   }
-
   get userId() {
     return this.managerAppService._authenticatedUser._id;
   }
@@ -22,18 +21,16 @@ export class WorkspacesAllComponent implements OnInit {
   }
 
   constructor(private managerAppService: ManagerAppService) { 
-    // this.managerAppService.token = `Bearer ${localStorage.getItem('bearer-todo')}`;
-    console.log(this.managerAppService.token)
-    this.getWorkspaces(this.managerAppService.token);
-
+    this.getWorkspaces();
   }
   
   ngOnInit(): void {
   }
 
-  getWorkspaces(token:string){
-    this.managerAppService.getWorkspace(token).subscribe((resp:WorkspaceResponse )=> {
+  getWorkspaces(){
+    this.managerAppService.getWorkspace().subscribe((resp:WorkspaceResponse )=> {
       this.managerAppService._workspaces = resp.workspace;
+      // console.log(resp.workspace)
     }, (err:any) => {
       console.log(err)
     });

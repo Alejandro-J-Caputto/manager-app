@@ -46,10 +46,11 @@ export class AuthService {
    checkToken():Observable<LoginResponse>{
     const url = `${this.apiUrl}/checkToken`
     // const token = `Bearer ${localStorage.getItem('bearer-todo')}`
-    const token = `${this.managerAppService.token}`
-    console.log(token)
+    const token = `${!this.managerAppService.token ? `${localStorage.getItem('bearer-todo')}` : this.managerAppService.token}`
+    // console.log(token)
     const headers = new HttpHeaders()
       .set('Authorization', token);
+    this.managerAppService.headers = !this.managerAppService.headers ? headers : this.managerAppService.headers;
     return this.http.get<LoginResponse>(url, {headers})
    }
 

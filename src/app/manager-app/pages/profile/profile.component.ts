@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdatedUserResponse } from 'src/app/auth/authInterfaces/auth.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { NotificationsComponent } from 'src/app/shared/notifications/notifications.component';
 import { EqualPass } from '../../manager-interfaces/checkpass.interface';
 
@@ -35,24 +36,14 @@ export class ProfileComponent implements OnInit {
     private managerAppService:ManagerAppService, 
     private fb: FormBuilder,
     private notifyService: NotifyService,
-    private notifications: NotificationsComponent
+    private notifications: NotificationsComponent,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
     console.log(this.userData)
   }
 
-  // customValidator() {
-
-  //   return () => {
-  //     if(this.userProfileForm.controls.password.value === this.userProfileForm.controls.passwordConfirm.value) {
-  //       return true
-  //     } else {
-  //       return {status:'false', message: 'The password doesnt match'}
-  //     }
-  //   }
-  // }
-    
 
   loadImagePrevUpload(e:any) {
     if(e.target.files) {
@@ -98,6 +89,8 @@ export class ProfileComponent implements OnInit {
             this.notifications.toggleNotification();
             this.managerAppService._authenticatedUser = resp.updatedUser;
           }, 1500);
+        this.authService.checkToken().subscribe(resp => console.log(resp))
+
        }
     }, (error => {
       if(error) {
@@ -134,6 +127,8 @@ export class ProfileComponent implements OnInit {
       setTimeout(() => {
         this.notifications.toggleNotification();
       }, 2000);
+      this.authService.checkToken().subscribe(resp => console.log(resp))
+
     }, (error) => {
       if(error.error.message === "The password is not correct") {
         this.notifyService.getMessage('wuops', 'The current password is not correct')

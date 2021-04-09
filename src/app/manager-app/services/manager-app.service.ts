@@ -21,43 +21,19 @@ export class ManagerAppService {
 
   public token!: string;
 
-  // private headers!:HttpHeaders;
-  // public get tokenChange() {
-  //   return this.token
-  // }
   public headers!:HttpHeaders;
   // private headers:HttpHeaders = new HttpHeaders().set('Authorization', this.token);
   
   public isRendered: boolean = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-    // this.setToken(`Bearer ${localStorage.getItem('bearer-todo')}`);
-    console.log(this._authenticatedUser)
-    console.log(this.token)
-
-  }
-
-  // setToken(newToken:string) :void {
-  //   if( !this.token) {
-  //     this.token = newToken;
-  //     this.headers = new HttpHeaders().set('Authorization', `'Bearer'${this.token}`);
-
-  //   }
-  // }
 
   //Get all the workspaces current user
-  getWorkspace(idUser:string):Observable<WorkspaceResponse> {
+  getWorkspace():Observable<WorkspaceResponse> {
     const url = `${this.apiUrl}/workspace`
-    // this.headers.set('Authorization', idUser);
-    const headers = new HttpHeaders()
-      .set('Authorization', idUser)
-        // return this.http.get<WorkspaceResponse>(url, {headers})
-      
-
-        return this.http.get<WorkspaceResponse>(url, {headers})
-    
-  }
+        return this.http.get<WorkspaceResponse>(url, {headers:this.headers})
+    }
 
   //Creates a workpacee at Sidebar.component
   createWorkspace(form: {title: string, theme?: string}):Observable<any>{
@@ -66,10 +42,7 @@ export class ManagerAppService {
       title: form.title,
       img: form.theme
     }
-    // console.log(this.headers)
-
-    const headers = new HttpHeaders().set('Authorization', this.token);
-    return this.http.post(`${this.apiUrl}/workspace`, body, {headers:headers});
+    return this.http.post(`${this.apiUrl}/workspace`, body, {headers:this.headers});
   }
 
   getTodoListsByWorkspaceId(id:string):Observable<TodoListResponse> {
@@ -105,8 +78,6 @@ export class ManagerAppService {
     return this.http.delete(url,{headers:this.headers});
   }
 
-
-
   createTodo(todo:string, todoListId:string):Observable<any>{
     const url = `${this.apiUrl}/todo`
     const body = {
@@ -115,7 +86,6 @@ export class ManagerAppService {
     }
     return this.http.post(url, body, {headers:this.headers});
   }
-
 
   //TOGGLE TODO STATUS 
 
@@ -166,10 +136,4 @@ export class ManagerAppService {
     return this.http.patch(url, form, {headers: this.headers});
   }
 
-  // onTheme(val: string) {
-  //   this.theme = val;
-  // }
-
-
-  
 }

@@ -19,10 +19,7 @@ export class AccessAppGuard implements CanActivate, CanLoad {
     return this.authService.checkToken().pipe(map( (resp:LoginResponse) => {
       if(resp.status === 'success'){
         this.managerAppService._authenticatedUser = resp.user;
-        // this.managerAppService.setToken(`Bearer ${localStorage.getItem('bearer-todo')}`)
-        // this.managerAppService.setToken(this.authService._token)
-        // this.managerAppService.getWorkspace().subscribe(resp => this.managerAppService._workspaces = resp.workspace)
-        console.log(this.managerAppService.token)
+        // console.log(this.managerAppService.token)
         return true;
       } else {
         return false
@@ -34,9 +31,6 @@ export class AccessAppGuard implements CanActivate, CanLoad {
     return this.authService.checkToken().pipe(map( (resp:LoginResponse) => {
       if(resp.status === 'success'){
         this.managerAppService._authenticatedUser = resp.user;
-        // this.managerAppService.setToken(`Bearer ${localStorage.getItem('bearer-todo')}`)
-        // this.managerAppService.token = this.authService._token;
-
         return true;
       } else {
         return false;
