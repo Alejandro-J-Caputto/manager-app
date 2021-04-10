@@ -79,7 +79,7 @@
     justify-content: flex-end;
     // padding-right: 6rem;
     @include responsive(phone) {
-      flex: 0 0 80%;
+      flex: 0 0 60%;
       // background-color: yellowgreen;
       justify-content: flex-end;
      }
@@ -113,7 +113,7 @@
       &-icon--settings {
         font-size: 3rem;
         
-       
+
        
       }
       &-icon--logout {
@@ -125,5 +125,9 @@
 
 
 
+}
+.workspace__name {
+  font-size: 2rem;
+  padding: 1rem 2rem;
 }
 

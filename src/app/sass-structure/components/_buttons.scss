@@ -17,6 +17,9 @@
     align-self: center;
   //  width: 50%; 
   }
+  &--todoList {
+    background-color: $color-angular-light;
+  }
   &:hover {
     transform: translateY(-3px);
     box-shadow: $shadow-dark;

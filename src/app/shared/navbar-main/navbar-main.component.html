@@ -1,9 +1,10 @@
 <div class="navbar">
   <div class="navbar__logo-box">
     <a class="navbar__link" [routerLink]="['/v2/manager-app/home'] "> <i class="navbar__logo fab fa-pied-piper-square"></i></a>
+    <div class="workspace__name">{{workSpaceName}}</div>
   </div>
  <div class="navbar__list">
-  <div *ngIf="isRendered" class="navbar__list-item">
+  <div *ngIf="!isRendered" class="navbar__list-item">
     <div class="navbar__link" ><i class="navbar__list-item-icon--settings fas fa-edit"></i>
     </div>
     <ul class="navbar-down-list">

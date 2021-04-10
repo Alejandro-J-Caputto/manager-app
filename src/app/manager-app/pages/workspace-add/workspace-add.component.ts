@@ -31,7 +31,7 @@ export class WorkspaceAddComponent implements OnInit {
   ngOnInit(): void {
   }
   sendForm() {
-    console.log(this.workspaceForm);
+    // console.log(this.workspaceForm);
     if(this.workspaceForm.invalid) {
       this.workspaceForm.markAllAsTouched()
       return;
@@ -76,11 +76,11 @@ export class WorkspaceAddComponent implements OnInit {
   setOutline(cardId:string | undefined) {
     const cardCollection = document.querySelectorAll('.workspace-card')!;
     cardCollection.forEach((el) => {
-      console.log('hello')
+      // console.log('hello')
 
       el.classList.remove('selectedCard');
       if(el.id === cardId) {
-        console.log(el.id)
+        // console.log(el.id)
        return el.classList.add('selectedCard');
       }
     })

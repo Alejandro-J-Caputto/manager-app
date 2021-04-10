@@ -55,7 +55,7 @@
         <p class="auth__error"  *ngIf="errorApi"  >{{errorApi}}</p>
       </div>
       <div class="auth-card__form__group">
-        <button class="btn btn--red" type="submit"> Sign In </button>
+        <button #registerButton class="btn btn--red" type="submit"> Sign In </button>
       </div>
       <div class="auth-card__form__group u-margin-bottom-small">
         <p class="paragraph u-center-text">Already registered? <span [routerLink]="['/auth/login']" style="font-weight: 500; text-decoration: underline; cursor: pointer;" > Log in </span> </p>

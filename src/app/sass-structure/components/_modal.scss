@@ -31,7 +31,10 @@
   justify-content: center;
   flex-direction: column;
   // align-items: center;
-
+  @include responsive(phone) {
+    height: 50vh;
+    position: fixed;
+  }
   &-content {
     display: flex;
     flex-direction: column;

@@ -12,6 +12,9 @@ export class NavbarMainComponent implements OnInit {
   get isRendered () {
     return this.managerAppService.isRendered;
   }
+  get workSpaceName() {
+    return this.managerAppService.workspaceName;
+  }
   public inputFlag: boolean = false
   get workspaces() {
     return this.managerAppService._workspaces;

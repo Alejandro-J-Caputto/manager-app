@@ -33,7 +33,7 @@ export class NotifyService {
         break;
       
       case 'loading':
-          this.text = 'Succesfully registered';
+          this.text = `${text ? text : 'Activating Super Security!!'}`;
           this.icon = 'fas fa-sync fa-spin'
         break;
       

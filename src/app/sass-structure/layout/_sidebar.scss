@@ -20,6 +20,7 @@
       padding-bottom: 1rem;
     }
     &__item {
+      color: white;
       // background-color: yellow;
       margin-bottom: 4px;
       padding: 2rem;
@@ -113,3 +114,10 @@
    text-transform: uppercase;
    text-decoration: none;
  }
+
+ .router-link-active {
+  transform: scale(1.1);
+  background-color: $color-angular-blue-dark;
+  margin-bottom: 10px;
+  outline: none;
+}

@@ -68,10 +68,14 @@
   }
   & + .fa-trash-alt {
     margin-left: -2.5rem;
+    padding: 1rem;
     color: white;
     &:hover {
       color: $color-primary-light;
       cursor: pointer;
+    }
+    @include responsive(phone) {
+      margin-left: -3.5rem;
     }
  }
  &:focus {
@@ -80,6 +84,10 @@
     visibility: hidden;
   }
  }
+}
+.todoList-card__add-item form {
+  display: flex;
+  flex-direction: column;
 }
 
 .todoList-card__add-item__input {

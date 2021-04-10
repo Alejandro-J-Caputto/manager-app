@@ -31,11 +31,11 @@ export class SearchComponent implements OnInit {
 
     const query = val.trim().toLowerCase();
 
-    console.log(query)
+    // console.log(query)
     this.notMatch = false;
     this.searching = true;
     this.filteredWorkspaces = this.workspaces.filter(el => el.title.toLowerCase().includes(query))
-    console.log(this.filteredWorkspaces)
+    // console.log(this.filteredWorkspaces)
     if(this.searchInput.nativeElement.value === '') {
       this.filteredWorkspaces = this.workspaces;
     } else {

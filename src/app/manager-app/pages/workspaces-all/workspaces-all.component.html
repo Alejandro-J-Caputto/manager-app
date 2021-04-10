@@ -18,7 +18,7 @@
       </p>
     </div> 
   </div>
-  <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of workspaces" class="workspace-card">
+  <div (click)="this.workspaceView.setNameWorkspace(space.title)" [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of workspaces" class="workspace-card">
     <span class="workspace-card__title">{{space.title}}</span>
     <img [src]="space.img" alt="" class="workspace-card__img">
   </div>

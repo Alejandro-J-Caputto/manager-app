@@ -20,20 +20,18 @@
     <div class="main-content-dashboard">
       <nav class="sidebar">
         <ul class="sidebar-nav">
-          <li class="sidebar-nav__item">
-            <a [routerLink]="['/v2/manager-app/home/workspaces']" routerLinkActive="router-link-active"  class="sidebar-nav__link">
-              <span>WORKSPACES</span>
-            </a>
+          <li class="sidebar-nav__item" [routerLink]="['/v2/manager-app/home/workspaces']" routerLinkActive="router-link-active" >
+            <!-- <a [routerLink]="['/v2/manager-app/home/workspaces']" routerLinkActive="router-link-active"  class="sidebar-nav__link">
+            </a> -->
+            <span>WORKSPACES</span>
         </li>
-          <li class="sidebar-nav__item">
-            <a [routerLink]="['/v2/manager-app/home/search']" routerLinkActive="router-link-active"  class="sidebar-nav__link">
+          <li class="sidebar-nav__link" [routerLink]="['/v2/manager-app/home/search']" routerLinkActive="router-link-active" class="sidebar-nav__item sidebar-nav__link">
+
               <span>FILTER</span>
-            </a>
+
         </li>
-          <li class="sidebar-nav__item">
-            <a [routerLink]="['/v2/manager-app/home/add']" routerLinkActive="router-link-active" class="sidebar-nav__link">
-              <span>ADD </span>
-            </a>
+          <li [routerLink]="['/v2/manager-app/home/add']" routerLinkActive="router-link-active" class="sidebar-nav__item sidebar-nav__link">
+            <span>ADD </span>
         </li>
         </ul>
       </nav>

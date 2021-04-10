@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
+import { WorkspaceViewComponent } from '../workspace-view/workspace-view.component';
 
 @Component({
   selector: 'app-workspaces-all',
@@ -20,7 +21,7 @@ export class WorkspacesAllComponent implements OnInit {
     return this.managerAppService._workspaces;
   }
 
-  constructor(private managerAppService: ManagerAppService) { 
+  constructor(private managerAppService: ManagerAppService, public workspaceView: WorkspaceViewComponent) { 
     this.getWorkspaces();
   }
   

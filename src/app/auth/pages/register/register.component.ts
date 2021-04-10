@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   public errorApi: string = '';
-
+  @ViewChild('registerButton') regButton!:ElementRef<HTMLButtonElement>;
   //BASIC REACTIVE FORM 
   // registerForm: FormGroup = new FormGroup({
   //   name: new FormControl(''),
@@ -62,29 +62,36 @@ export class RegisterComponent implements OnInit {
       this.registerForm.markAllAsTouched()
       return;
     }
-    console.log(this.registerForm.value);
 
     this.auth.authRegister(this.registerForm.value).subscribe((resp:RegisterResponse) => {
-
-      if(resp.status === 'success'){
-        this.managerApp.token = `Bearer ${resp.token}`;
-        this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
-
-        // this.auth._token = resp.token;
-        localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
-        console.log(resp.newUser)
-        console.log(resp.token)
-        this.auth._user = resp.newUser;
-        this.notifyService.getMessage('registration');
-        this.notification.toggleNotification();
-        setTimeout(() => {
-          
-          this.router.navigateByUrl('/v2/manager-app/home/workspaces')
-        }, 2000);
-      }
+      this.regButton.nativeElement.disabled = true;
+      this.notifyService.getMessage('loading');
+      this.notification.toggleNotification();
+      setTimeout(() => {
+        if(resp.status === 'success'){
+          this.notification.toggleNotification();
+          this.managerApp.token = `Bearer ${resp.token}`;
+          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
+  
+          // this.auth._token = resp.token;
+          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
+          // console.log(resp.newUser)
+          // console.log(resp.token)
+          this.auth._user = resp.newUser;
+          this.notifyService.getMessage('registration');
+          this.notification.toggleNotification();
+          setTimeout(() => {
+            
+            this.router.navigateByUrl('/v2/manager-app/home/workspaces')
+          }, 1500);
+        }
+        
+      }, 2000);
     },err => {
       console.log(err)
       this.errorApi = err.error.message;
+      this.regButton.nativeElement.disabled = false;
+      this.notification.toggleNotification();
       
     })
 

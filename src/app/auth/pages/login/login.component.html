@@ -41,13 +41,13 @@
         <p *ngIf="errorApi" class="auth__error">{{errorApi}}</p>
       </div>
       <div class="auth-card__form__group">
-        <button class="btn btn--red" type="submit"> Log in </button>
+        <button #loginButton class="btn btn--red" type="submit"> Log in </button>
       </div>
       <div class="auth-card__form__group u-margin-bottom-small">
         <p class="paragraph u-center-text">Don't you have an account?  <span [routerLink]="['/auth/register']" style="font-weight: 500; text-decoration: underline; cursor: pointer;" > Register now </span> </p>
       </div>
     </form>
-    <div class="auth-card__icon-box">
+    <div class="auth-card__icon-box log">
       <img src="assets/img/file_type_angular_icon_130754.png" class="auth-card__icon" alt="angular icon">
     </div>
   </div>

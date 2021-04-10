@@ -25,6 +25,7 @@ export class ManagerAppService {
   // private headers:HttpHeaders = new HttpHeaders().set('Authorization', this.token);
   
   public isRendered: boolean = false;
+  public workspaceName!: string;
 
   constructor(private http: HttpClient) { }
 

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TodoListResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
@@ -17,6 +17,7 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
     return [...this.managerAppService.globaltodoListTest];
   }
 
+  @ViewChild('inputToDoList') inputTodoList!:ElementRef<HTMLInputElement>;
   constructor( private managerAppService:ManagerAppService,private router:Router, private activatedRoute: ActivatedRoute) {
     this.getParam();
     this.getTodoList();
@@ -28,6 +29,7 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.setNavbarLink();
+    this.setNameWorkspace('');
   }
   getParam(){
     this.activatedRoute.params.subscribe(params => {
@@ -37,7 +39,7 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
   getTheme() {
     if(this.managerAppService._workspaces.length) {
       const filterTheme = [...this.managerAppService._workspaces].filter(el => el._id === this.workspaceID);
-      console.log(filterTheme[0].img);
+      // console.log(filterTheme[0].img);
       this.theme = filterTheme[0].img;
       localStorage.setItem('theme', this.theme);
       
@@ -50,7 +52,10 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
   getTodoList(){
     this.managerAppService.getTodoListsByWorkspaceId(this.workspaceID).subscribe(resp => {
       // this.todoLists = resp.todoList;
+      
       this.managerAppService.globaltodoListTest = resp.todoList;
+    }, (error) => {
+      console.log(error)
     })
   }
   // addTodoList(val){
@@ -60,10 +65,14 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
     this.managerAppService.createTodoList(val, this.workspaceID).subscribe( (resp:TodoListResponse)=> {
       this.managerAppService.globaltodoListTest = [...this.managerAppService.globaltodoListTest, resp.newTodoList];
     } )
+    this.inputTodoList.nativeElement.value = ''
   }
 
   setNavbarLink() {
     this.managerAppService.isRendered = !this.managerAppService.isRendered ? this.managerAppService.isRendered = true : this.managerAppService.isRendered = false;
+  }
+  setNameWorkspace(name: string) {
+    this.managerAppService.workspaceName = name;
   }
   styles() {
     return {

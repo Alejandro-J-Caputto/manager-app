@@ -1,4 +1,5 @@
 import {  Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Draggable, DragTarget } from '../../manager-interfaces/drag-drop.interface';
 import { AddTodoResponse, DeleteTodoList, IsDoneTodo, Todo } from '../../manager-interfaces/managerApp.interface';
@@ -22,19 +23,30 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
   @ViewChild('refOverlay') overlay!:ElementRef<HTMLDivElement>;
   @ViewChild('refModalInput') modalInput!:ElementRef<HTMLInputElement>;
   @ViewChild('todoListCard') todoListCard!: ElementRef<HTMLDivElement>;
+  @ViewChild('inputChange') inputChange!: ElementRef<HTMLInputElement>;
 
   @Input('dataName') name = '';
   @Input('dataTodos') todos:Todo [] = [];
   @Input('todoListID') todoListID:string = '';
   
+  todoForm:FormGroup = this.fb.group({
+    todoName: new FormControl('')
+  })
 
-  constructor(private managerAppService: ManagerAppService, private activatedRoute: ActivatedRoute, private workSpaceView: WorkspaceViewComponent) {
+  constructor(private fb:FormBuilder ,private managerAppService: ManagerAppService, private activatedRoute: ActivatedRoute, private workSpaceView: WorkspaceViewComponent) {
     this.workSpaceView.getParam();
    }
+
+
 
   ngOnInit(): void {
     this.scrollUp();
   }
+  createForm(todoTitle:string, todoValue:string) {
+    this.todoForm.setControl(todoTitle, this.todoForm.controls.todoName)
+    console.log(this.todoForm);
+  }
+
 
   addTodoToList (todo:HTMLInputElement){
     const currentCard = todo.closest('.todoList-card');
@@ -44,7 +56,6 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
       this.todos = []
     }
      this.managerAppService.createTodo(todo.value, currentCard!.id).subscribe((resp:AddTodoResponse) => {
-       console.log('hello')
       if(this.todos.length) {
         this.todos = [...this.todos, resp.newTodo]
       }
@@ -53,6 +64,7 @@ export class TodolistCardComponent implements OnInit, Draggable, DragTarget {
       }
     });
     todo.value = '';
+
   }
   // CHANGE STATUS TO DONE
   isDone(id:string){

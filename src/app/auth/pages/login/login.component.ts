@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {NgForm} from '@angular/forms';
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   public errorApi: string = '';
 
+  @ViewChild('loginButton') logButton!:ElementRef<HTMLButtonElement>
   login:LoginForm = {
     email: '',
     password: ''
@@ -41,24 +42,33 @@ export class LoginComponent implements OnInit {
       return;
     }
     if(logForm.valid){
-      console.log(this.login.password)
+      // console.log(this.login.password)
       this.auth.authLogin(this.login).subscribe((resp:LoginResponse) => {
-        if(resp.status === 'success'){
-          // this.auth._token = resp.token;
-          this.managerApp.token = `Bearer ${resp.token}`;
-          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
-          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
-          this.auth._user = resp.user;
-          this.notifyService.getMessage('login');
-          this.notification.toggleNotification();
-          setTimeout(() => {
-            
-            this.router.navigate(['/v2/manager-app/home/workspaces'])
-          }, 3000);
-        }
+        this.logButton.nativeElement.disabled = true;
+        this.notifyService.getMessage('loading')
+        this.notification.toggleNotification();
+        setTimeout(() => {
+          
+          if(resp.status === 'success'){
+            this.notification.toggleNotification();
+            // this.auth._token = resp.token;
+            this.managerApp.token = `Bearer ${resp.token}`;
+            this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
+            localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
+            this.auth._user = resp.user;
+            this.notifyService.getMessage('login');
+            this.notification.toggleNotification();
+            setTimeout(() => {
+              
+              this.router.navigate(['/v2/manager-app/home/workspaces'])
+            }, 1500);
+          }
+        }, 2000);
       }, err => {
         console.log(err)
         this.errorApi = err.error.message;
+        this.logButton.nativeElement.disabled = false;
+        this.notification.toggleNotification();
       });
     }
   }

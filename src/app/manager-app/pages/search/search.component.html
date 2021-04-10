@@ -4,8 +4,8 @@
     <label for="search" class="workspace-form__title-label">Search...</label>
     <p *ngIf="notMatch" class="search__fail"> This workspace doesn't exist </p>
   </div>
-  <div *ngIf="!!!searching" class="grid__workspace">
-    <div *ngIf="!notMatch">
+  <div *ngIf="!!!searching" class="">
+    <div *ngIf="!notMatch" class="grid__workspace">
       <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of (!filteredWorkspaces.length ? workspaces : filteredWorkspaces)" class="workspace-card">
         <span class="workspace-card__title">{{space.title}}</span>
         <img [src]="space.img" alt="" class="workspace-card__img">

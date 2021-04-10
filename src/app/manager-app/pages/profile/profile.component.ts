@@ -54,9 +54,11 @@ export class ProfileComponent implements OnInit {
       }
 
       this.managerAppService.patchProfileImg(e.target.files[0]).subscribe((resp:any) => {
-        console.log(resp);
+        // console.log(resp);
         // this.managerAppService._authenticatedUser.img = resp
         this.managerAppService._authenticatedUser.img = resp.url;
+      }, (error) => {
+        console.log(error)
       })
 
     }
@@ -71,14 +73,14 @@ export class ProfileComponent implements OnInit {
   }
 
   sendFormUser() {
-    console.log(this.userProfileForm.controls.password.value)
+    // console.log(this.userProfileForm.controls.password.value)
     if(this.userProfileForm.invalid) {
       this.userProfileForm.markAllAsTouched()
       return;
     }
     
-    console.log(this.userProfileForm)
-    console.log(this.userProfileForm.value)
+    // console.log(this.userProfileForm)
+    // console.log(this.userProfileForm.value)
 
     this.managerAppService.patchUserData(this.userProfileForm.value).subscribe((resp: UpdatedUserResponse) => {
       console.log(resp)
@@ -113,7 +115,7 @@ export class ProfileComponent implements OnInit {
       this.resetPassForm.markAllAsTouched();
       return
     }
-    console.log('hello')
+    // console.log('hello')
     
     if(this.resetPassForm.valid && this.resetPassForm.controls.passwordReset.value !== this.resetPassForm.controls.passwordConfirm.value) {
       this.resetPassForm.controls.passwordReset.setValue('');

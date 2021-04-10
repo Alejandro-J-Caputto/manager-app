@@ -52,6 +52,15 @@
     }
 
   }
+  .log {
+    @include responsive(phone) {
+      position: absolute;
+      left: 50%;
+      top: 12%;
+
+      transform: translate(-50%, -50%);
+    }
+  }
   &__icon {
     align-self: center;
     height: 20rem;

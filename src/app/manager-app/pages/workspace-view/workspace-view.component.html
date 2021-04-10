@@ -3,10 +3,11 @@
 
   <div class="todoList-wrapper">
     <app-todolist-card *ngFor="let todoList of todoLists" class="card-grid" [todoListID]="todoList._id" [dataName]="todoList.name" [dataTodos]="todoList.todos"></app-todolist-card>
-    <div class="add__card">
+    
+    <form (ngSubmit)="addNewTodoList(inputToDoList.value)" class="add__card">
       <input (keyup.enter)="addNewTodoList(inputToDoList.value)" #inputToDoList type="text" placeholder="Add a new List">
-      <button (click)="addNewTodoList(inputToDoList.value)" class="add__card__button">New List</button>
-    </div>
+      <button (click)="addNewTodoList(inputToDoList.value)" type="submit" class="add__card__button">New List</button>
+    </form>
   </div>
 
 </div>
