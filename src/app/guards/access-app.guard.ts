@@ -17,8 +17,11 @@ export class AccessAppGuard implements CanActivate, CanLoad {
   canActivate(): Observable<boolean> | boolean  {
 
     return this.authService.checkToken().pipe(map( (resp:LoginResponse) => {
+      this.managerAppService._authenticatedUser = resp.user;
       if(resp.status === 'success'){
-        this.managerAppService._authenticatedUser = resp.user;
+        
+
+        // console.log(this.managerAppService._authenticatedUser)
         // console.log(this.managerAppService.token)
         return true;
       } else {
@@ -29,8 +32,9 @@ export class AccessAppGuard implements CanActivate, CanLoad {
   }
   canLoad(): Observable<boolean> | boolean  {
     return this.authService.checkToken().pipe(map( (resp:LoginResponse) => {
+      this.managerAppService._authenticatedUser = resp.user;
       if(resp.status === 'success'){
-        this.managerAppService._authenticatedUser = resp.user;
+        
         return true;
       } else {
         return false;

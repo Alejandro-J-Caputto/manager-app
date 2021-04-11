@@ -40,6 +40,11 @@ export class AuthService {
     localStorage.removeItem('work-active')
     // this.managerAppService.token = '';
     this.managerAppService._workspaces = [];
+    const headers = new HttpHeaders()
+      .set('Authorization', `${localStorage.getItem('bearer-todo')}`);
+    this.managerAppService.headers = headers;
+    this.managerAppService.token = 'logout';
+    this.checkToken().subscribe(resp => console.log(resp))
     this.router.navigate(['/auth/login'])
    }
 
@@ -47,7 +52,6 @@ export class AuthService {
     const url = `${this.apiUrl}/checkToken`
     // const token = `Bearer ${localStorage.getItem('bearer-todo')}`
     const token = `${!this.managerAppService.token ? `${localStorage.getItem('bearer-todo')}` : this.managerAppService.token}`
-    // console.log(token)
     const headers = new HttpHeaders()
       .set('Authorization', token);
     this.managerAppService.headers = !this.managerAppService.headers ? headers : this.managerAppService.headers;

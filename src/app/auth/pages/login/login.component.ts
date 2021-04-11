@@ -68,7 +68,12 @@ export class LoginComponent implements OnInit {
         console.log(err)
         this.errorApi = err.error.message;
         this.logButton.nativeElement.disabled = false;
+        this.notifyService.getMessage('wuops', this.errorApi);
         this.notification.toggleNotification();
+        setTimeout(() => {
+          this.notification.toggleNotification();
+        }, 1500);
+        this.logButton.nativeElement.disabled = false;
       });
     }
   }
