@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';
 import { WorkspacesAllComponent } from '../workspaces-all/workspaces-all.component';
@@ -20,7 +21,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('searchInput') searchInput!:ElementRef<HTMLInputElement>;
 
-  constructor(private managerAppService: ManagerAppService, private workspaceAll: WorkspacesAllComponent) {
+  constructor(private managerAppService: ManagerAppService, private workspaceAll: WorkspacesAllComponent, private router:Router) {
     this.workspaceAll.getWorkspaces();
     // this.managerAppService.setWorkspace(this.workspaceAll.workspaces);
   }
@@ -48,6 +49,11 @@ export class SearchComponent implements OnInit {
     if(!this.filteredWorkspaces.length) {
       this.notMatch = true;
     }
+  }
+
+  goToView(id:string):void {
+    console.log('hello')
+    this.router.navigateByUrl(`/v2/manager-app/workspace/${id}`)
   }
   
   

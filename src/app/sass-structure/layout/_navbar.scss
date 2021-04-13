@@ -26,23 +26,27 @@
     color: $color-grey-dark-1;
     background-color: white;
     list-style: none;
-    width: 100%;
+    // width: 100%;
     position: absolute;
-    top: 100%;
-    right: 0%;
+    left: -3rem;
+    top: 125%;
+    // top: 100%;
+    // right: 0%;
     z-index: 90000;
-    padding: 2rem 3rem;
+    padding: 0rem 5rem;
     @include responsive(phone) {
-      top: -200%;
-      width: 60%;
-      right: -5%;
-      padding: 2rem 2rem;
+      bottom: 100%;
+      top: unset;
+      left: -2rem;
+      padding: 0rem 5rem;
     }
     &__item {
       padding: 2rem;
     }
   }
-
+  &__link {
+    position: relative;
+  }
   &__link:link, 
   &__link:visited{
     color: $color-white;
@@ -112,7 +116,7 @@
       }
       &-icon--settings {
         font-size: 3rem;
-        
+
 
        
       }

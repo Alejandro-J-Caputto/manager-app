@@ -4,9 +4,10 @@
     <label for="search" class="workspace-form__title-label">Search...</label>
     <p *ngIf="notMatch" class="search__fail"> This workspace doesn't exist </p>
   </div>
+  <div *ngIf="!workspaces.length" class="message-empty" style="text-align: center;"> YOU DONT HAVE A CREATED A WORKSPACE YET </div>
   <div *ngIf="!!!searching" class="">
     <div *ngIf="!notMatch" class="grid__workspace">
-      <div [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of (!filteredWorkspaces.length ? workspaces : filteredWorkspaces)" class="workspace-card">
+      <div (Keyup.enter)="goToView(space._id)" [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of (!filteredWorkspaces.length ? workspaces : filteredWorkspaces)" class="workspace-card">
         <span class="workspace-card__title">{{space.title}}</span>
         <img [src]="space.img" alt="" class="workspace-card__img">
       </div>

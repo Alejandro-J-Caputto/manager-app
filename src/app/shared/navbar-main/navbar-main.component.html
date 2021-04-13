@@ -4,20 +4,21 @@
     <div class="workspace__name">{{workSpaceName}}</div>
   </div>
  <div class="navbar__list">
+  <div class="navbar__list-item">
+    <a class="navbar__link" [routerLink]="['/v2/manager-app/home/workspaces']" routerLinkActive="active-link"><i class="navbar__list-item-icon--logout fas fa-home"></i></a>
+  </div>
   <div *ngIf="!isRendered" class="navbar__list-item">
-    <div class="navbar__link" ><i class="navbar__list-item-icon--settings fas fa-edit"></i>
+    <div class="navbar__link navbar__link--settings" ><i class="navbar__list-item-icon--settings fas fa-edit"></i>
+      <ul class="navbar-down-list">
+        <li class="navbar-down-list__item" [routerLink]="['/v2/manager-app/home/add']" routerLinkActive="router-link-active" >New space</li>
+  
+      </ul>
     </div>
-    <ul class="navbar-down-list">
-      <li class="navbar-down-list__item" [routerLink]="['/v2/manager-app/home/add']" routerLinkActive="router-link-active" >New space</li>
-
-    </ul>
   </div>
   <!-- <div class="navbar__list-item">
     <a class="navbar__link" [routerLink]="['/v2/manager-app/settings']" routerLinkActive="active-link"><i class="navbar__list-item-icon--settings fas  fa-cog"></i></a>
   </div> -->
-  <div class="navbar__list-item">
-    <a class="navbar__link" [routerLink]="['/v2/manager-app/home/workspaces']" routerLinkActive="active-link"><i class="navbar__list-item-icon--logout fas fa-home"></i></a>
-  </div>
+ 
   <div class="navbar__list-item">
     <a class="navbar__link" [routerLink]="['/v2/manager-app/profile']" routerLinkActive="active-link"><img class="navbar__list-item-user-photo" [src]="userData.img ? userData.img : '../../../../assets/img/user-img-default.png'" alt="User photo"></a>
   </div>

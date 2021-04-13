@@ -48,7 +48,7 @@
     
   }
   &:hover {
-  transform: scale(1.1);
+  // transform: scale(1.1);
 
   }
 }
@@ -137,10 +137,14 @@
 
 
 .add__card {
-  // height: 8rem;
-  // width: 100%;
+  width: 20%;
+ display: flex;
+ flex-direction: column;
+  @include responsive(tab-port) {
+    width: 25%;
+  }
   @include responsive(phone) {
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }

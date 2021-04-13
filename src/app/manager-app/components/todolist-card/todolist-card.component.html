@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div data-id="{{todoListID}}" #todoListCard class="todoList-card">
+<div data-id="{{todoListID}}" #todoListCard (dragleave)="dragLeaveHandler($event)" (dragover) = "dragOverHandler($event)" (drop)="dropHandler($event)" class="todoList-card">
   <div class="todoList-card__head">
     <input 
     type="text" 
@@ -31,7 +31,7 @@
     <i (click)="todoListModal()" class="fas fa-trash-alt"></i>
   </div>
   <ul class="todoList-card__body">
-    <div #arrTodos (dragleave)="dragLeaveHandler($event)" (drop)="dropHandler($event)" (dragover) = "dragOverHandler($event)" *ngFor="let todo of todos" class="todoList-card__body__item" (cdkDropListDropped)="dragEndHandler($event)">
+    <div #arrTodos    *ngFor="let todo of todos" class="todoList-card__body__item" (cdkDropListDropped)="dragEndHandler($event)">
         <input 
         (keyup.enter)="onChangeTodo(inputChange.value, todo._id)" 
         #inputChange class="li" 
