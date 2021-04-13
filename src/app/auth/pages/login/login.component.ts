@@ -43,21 +43,21 @@ export class LoginComponent implements OnInit {
     }
     if(logForm.valid){
       // console.log(this.login.password)
+      this.notifyService.getMessage('loading')
+      this.notification.toggleNotification();
+      logForm.control.disable();
       this.auth.authLogin(this.login).subscribe((resp:LoginResponse) => {
         this.logButton.nativeElement.disabled = true;
-        this.notifyService.getMessage('loading')
-        this.notification.toggleNotification();
         setTimeout(() => {
           
           if(resp.status === 'success'){
-            this.notification.toggleNotification();
+            // this.notification.toggleNotification();
             // this.auth._token = resp.token;
+            this.notifyService.getMessage('login');
             this.managerApp.token = `Bearer ${resp.token}`;
             this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
             localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
             this.auth._user = resp.user;
-            this.notifyService.getMessage('login');
-            this.notification.toggleNotification();
             setTimeout(() => {
               
               this.router.navigate(['/v2/manager-app/home/workspaces'])
@@ -69,11 +69,13 @@ export class LoginComponent implements OnInit {
         this.errorApi = err.error.message;
         this.logButton.nativeElement.disabled = false;
         this.notifyService.getMessage('wuops', this.errorApi);
-        this.notification.toggleNotification();
+
         setTimeout(() => {
           this.notification.toggleNotification();
-        }, 1500);
+        }, 2500);
         this.logButton.nativeElement.disabled = false;
+        logForm.control.enable();
+        // this.notification.toggleNotification();
       });
     }
   }

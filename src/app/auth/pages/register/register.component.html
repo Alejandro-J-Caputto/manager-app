@@ -52,7 +52,7 @@
         id="passwordConfirm">
         <label for="passwordConfirm" class="auth-card__form__label">Confirm Password</label>
         <p class="auth__error"  *ngIf="isInvalid('passwordConfirm')"  >The password confirmation is required</p>
-        <p class="auth__error"  *ngIf="errorApi"  >{{errorApi}}</p>
+        <!-- <p class="auth__error"  *ngIf="errorApi"  >{{errorApi}}</p> -->
       </div>
       <div class="auth-card__form__group">
         <button #registerButton class="btn btn--red" type="submit"> Sign In </button>

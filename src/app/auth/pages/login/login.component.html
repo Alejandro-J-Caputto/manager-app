@@ -38,7 +38,7 @@
 
         <label for="password" class="auth-card__form__label">Password</label>
       <p class="auth__error"  *ngIf="pass.invalid && pass.touched">The password is required</p>
-        <p *ngIf="errorApi" class="auth__error">{{errorApi}}</p>
+        <!-- <p *ngIf="errorApi" class="auth__error">{{errorApi}}</p> -->
       </div>
       <div class="auth-card__form__group">
         <button #loginButton class="btn btn--red" type="submit"> Log in </button>

@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
 
     this.auth.authRegister(this.registerForm.value).subscribe((resp:RegisterResponse) => {
       this.regButton.nativeElement.disabled = true;
+      this.registerForm.disable();
       this.notifyService.getMessage('loading');
       this.notification.toggleNotification();
       setTimeout(() => {
@@ -78,6 +79,7 @@ export class RegisterComponent implements OnInit {
           // console.log(resp.newUser)
           // console.log(resp.token)
           this.auth._user = resp.newUser;
+          this.managerApp._authenticatedUser = resp.newUser;
           this.notifyService.getMessage('registration');
           this.notification.toggleNotification();
           setTimeout(() => {
@@ -95,8 +97,9 @@ export class RegisterComponent implements OnInit {
       this.notification.toggleNotification();
       setTimeout(() => {
         this.notification.toggleNotification();
-      }, 1500);
+      }, 2500);
       this.regButton.nativeElement.disabled = false;
+      this.registerForm.enable();
     })
 
     this.registerForm.reset();
