@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.userData)
+    // console.log(this.userData)
   }
 
 

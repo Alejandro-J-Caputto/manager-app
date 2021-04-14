@@ -62,26 +62,28 @@ export class RegisterComponent implements OnInit {
       this.registerForm.markAllAsTouched()
       return;
     }
+    this.notifyService.getMessage('loading');
+    this.notification.toggleNotification();
 
     this.auth.authRegister(this.registerForm.value).subscribe((resp:RegisterResponse) => {
       this.regButton.nativeElement.disabled = true;
       this.registerForm.disable();
-      this.notifyService.getMessage('loading');
-      this.notification.toggleNotification();
       setTimeout(() => {
         if(resp.status === 'success'){
-          this.notification.toggleNotification();
+          // this.notification.toggleNotification();
           this.managerApp.token = `Bearer ${resp.token}`;
           this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
   
           // this.auth._token = resp.token;
           localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
+          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
+          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
+          this.notifyService.getMessage('registration');
+          this.notification.toggleNotification();
+          // this.managerApp._authenticatedUser = resp.newUser;
           // console.log(resp.newUser)
           // console.log(resp.token)
           this.auth._user = resp.newUser;
-          this.managerApp._authenticatedUser = resp.newUser;
-          this.notifyService.getMessage('registration');
-          this.notification.toggleNotification();
           setTimeout(() => {
             
             this.router.navigateByUrl('/v2/manager-app/home/workspaces')
@@ -90,11 +92,11 @@ export class RegisterComponent implements OnInit {
         
       }, 2000);
     },err => {
-      console.log(err)
+      // console.log(err)
       this.errorApi = err.error.message;
       this.regButton.nativeElement.disabled = false;
       this.notifyService.getMessage('wuops', this.errorApi);
-      this.notification.toggleNotification();
+
       setTimeout(() => {
         this.notification.toggleNotification();
       }, 2500);

@@ -25,7 +25,11 @@ export class WorkspaceAddComponent implements OnInit {
   //THEME HOLDS THE URL FROM CLOUDINARY
 
 
-  constructor(private fb:FormBuilder, private managerAppService:ManagerAppService, private activatedRoute:Router, private notifyService: NotifyService, private notification: NotificationsComponent) { }
+  constructor(private fb:FormBuilder, 
+    private managerAppService:ManagerAppService, 
+    private activatedRoute:Router, 
+    private notifyService: NotifyService, 
+    private notification: NotificationsComponent) { }
 
 
   ngOnInit(): void {
@@ -76,8 +80,6 @@ export class WorkspaceAddComponent implements OnInit {
   setOutline(cardId:string | undefined) {
     const cardCollection = document.querySelectorAll('.workspace-card')!;
     cardCollection.forEach((el) => {
-      // console.log('hello')
-
       el.classList.remove('selectedCard');
       if(el.id === cardId) {
         // console.log(el.id)
