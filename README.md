@@ -6,22 +6,66 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot--1.png"/>
 
-## Build
+# Manager-App 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Welcome to manager App
 
-## Running unit tests
+This is an app for testing and improving purposes. Please this is not a fully functional app, is just an experimental application for fun. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##  API
 
-## Running end-to-end tests
+### The backend is hosted by heroku.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+[Traversy-Media](https://manager-app-v2.herokuapp.com "Visit the Api")
 
-## Further help
+## To access the application you have to be either registerd or logged in.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-login-shot.png" />
+
+
+
+
+### ONCE YOU ARE SUCESFULLY LOGGED IN
+
+Click in the ADD Navigation button and provide
+
+* Name: Required
+* Theme: Selected by default
+
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-add.png" />
+
+<br/>
+<br/><br/>
+<br/>
+
+## Once the new Space is created you will be redirected. 
+
+Select your new workspace and add a new list. 
+
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-list.png" />
+
+<br/>
+<br/>
+
+### You can mark as checked the todos drag them and drop them.
+
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-drag.png" />
+
+
+<br/>
+<br/>
+
+## Profile
+In this section you can upload a picture and update your personal data.
+
+
+
+
+
+<img style="width: 400px; width: 400px;" src="./src/assets/img/manager-shot--profile.png" />
+
+
+# MORE FEATURES COMING SOON
