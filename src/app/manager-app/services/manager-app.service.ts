@@ -38,7 +38,7 @@ export class ManagerAppService {
 
   //Creates a workpacee at Sidebar.component
   createWorkspace(form: {title: string, theme?: string}):Observable<any>{
-    console.log(form)
+    // console.log(form)
     const body = {
       title: form.title,
       img: form.theme
