@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkspaceResponse } from '../../manager-interfaces/managerApp.interface';
 import { ManagerAppService } from '../../services/manager-app.service';

@@ -1,10 +1,10 @@
 <div class="grid__search">
   <div class="search-group">
-    <input #searchInput (keyup)="search(searchInput.value)" type="text" id="search" class="workspace-form__title-input" placeholder="Search...">
+    <input #searchInput (keyup)="search(searchInput.value)" autofocus="true" type="text" id="search" class="workspace-form__title-input" placeholder="Search...">
     <label for="search" class="workspace-form__title-label">Search...</label>
     <p *ngIf="notMatch" class="search__fail"> This workspace doesn't exist </p>
   </div>
-  <div *ngIf="!workspaces.length" class="message-empty" style="text-align: center;"> YOU DONT HAVE A CREATED A WORKSPACE YET </div>
+  <div *ngIf="!workspaces.length" class="message-empty" style="text-align: center;"> YOU DON'T HAVE A CREATED A WORKSPACE YET </div>
   <div *ngIf="!!!searching" class="">
     <div *ngIf="!notMatch" class="grid__workspace">
       <div (Keyup.enter)="goToView(space._id)" [routerLink]="['/v2/manager-app/workspace', space._id]" *ngFor="let space of (!filteredWorkspaces.length ? workspaces : filteredWorkspaces)" class="workspace-card">
@@ -12,11 +12,10 @@
         <img [src]="space.img" alt="" class="workspace-card__img">
       </div>
     </div>
-
   </div>
   <div *ngIf="searching" class="grid__workspace">
-    <div class="loading"><i class="fas fa-sync fa-spin"></i> </div>
-
+    <div class="loading">
+      <i class="fas fa-sync fa-spin"></i>
+    </div>
   </div>
-
 </div>

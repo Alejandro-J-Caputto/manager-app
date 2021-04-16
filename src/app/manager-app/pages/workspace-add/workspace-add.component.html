@@ -7,15 +7,16 @@
   <div class="add__form">
     <form [formGroup]="workspaceForm" (ngSubmit)="sendForm()" autocomplete="off" class="workspace-form">
       <div class="form-group">
-        <input formControlName="title" type="text" class="workspace-form__title-input" placeholder="Workspace's Name">
+        <input formControlName="title" type="text" autofocus="true" class="workspace-form__title-input" placeholder="Workspace's Name">
         <label for="title" class="workspace-form__title-label">Workspace's Name</label>
         <p class="error-form" *ngIf="isInvalid('title')" >The name is required</p>
 
       </div>
       <div class="form-group">
         <label for="title" class="workspace-form__title-label">Select a theme</label>
+        <!-- TODO: ADD just one event listener to the parent not 7 times set Theme to the children UU' -->
         <div #themeOptions class="grid__workspace grid__workspace--add">
-          <div id="iksgsorgjrltr65cs8gq"  (click)="setTheme('https://res.cloudinary.com/dlm1qwk4g/image/upload/v1617284918/iksgsorgjrltr65cs8gq.jpg', 'iksgsorgjrltr65cs8gq')" class="workspace-card workspace-card--1"></div>
+          <div id="iksgsorgjrltr65cs8gq" (click)="setTheme('https://res.cloudinary.com/dlm1qwk4g/image/upload/v1617284918/iksgsorgjrltr65cs8gq.jpg', 'iksgsorgjrltr65cs8gq')" class="workspace-card workspace-card--1"></div>
           <div id="ogjwagrcqyvf4xcphg64" (click)="setTheme('https://res.cloudinary.com/dlm1qwk4g/image/upload/v1617284917/ogjwagrcqyvf4xcphg64.jpg', 'ogjwagrcqyvf4xcphg64')" class="workspace-card workspace-card--2"></div>
           <div id="vg4ti2cc9b23yzyvxkom" (click)="setTheme('https://res.cloudinary.com/dlm1qwk4g/image/upload/v1617284917/vg4ti2cc9b23yzyvxkom.jpg', 'vg4ti2cc9b23yzyvxkom')" class="workspace-card workspace-card--3"></div>
           <div id="epdqoodzp24aecddjcjf" (click)="setTheme('https://res.cloudinary.com/dlm1qwk4g/image/upload/v1617284917/epdqoodzp24aecddjcjf.jpg', 'epdqoodzp24aecddjcjf')" class="workspace-card workspace-card--4"></div>

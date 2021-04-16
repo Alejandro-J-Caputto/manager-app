@@ -9,21 +9,16 @@ import { RegisterForm, UpdatedUserResponse } from 'src/app/auth/authInterfaces/a
 })
 export class ManagerAppService {
 
-  // public theme!: string;
-  public _authenticatedUser!:User;
-
-  public _workspaces:Workspace[] = [];
-
-  public globaltodoListTest:TodoLists[] | NewTodoList [] = [];
-
   //TOKEN FROM LOCALSTORAGE PREVIOUSLY STORED AT AUTH PROCESS 
   private apiUrl: string = 'https://manager-app-v2.herokuapp.com/api/todoapp/v1';
-
   public token!: string;
-
   public headers!:HttpHeaders;
-  // private headers:HttpHeaders = new HttpHeaders().set('Authorization', this.token);
-  
+  public _authenticatedUser!:User;
+    
+  public _workspaces:Workspace[] = [];
+  public globaltodoListTest:TodoLists[] | NewTodoList [] = [];
+
+    
   public isRendered: boolean = false;
   public workspaceName!: string;
 

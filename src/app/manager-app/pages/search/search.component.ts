@@ -21,8 +21,11 @@ export class SearchComponent implements OnInit {
   @ViewChild('refModal') modal!:ElementRef<HTMLDivElement>;
   @ViewChild('searchInput') searchInput!:ElementRef<HTMLInputElement>;
 
-  constructor(private managerAppService: ManagerAppService, private workspaceAll: WorkspacesAllComponent, private router:Router) {
+  constructor(private managerAppService: ManagerAppService, 
+    private workspaceAll: WorkspacesAllComponent, 
+    private router:Router) {
     this.workspaceAll.getWorkspaces();
+
     // this.managerAppService.setWorkspace(this.workspaceAll.workspaces);
   }
 
@@ -52,7 +55,6 @@ export class SearchComponent implements OnInit {
   }
 
   goToView(id:string):void {
-    console.log('hello')
     this.router.navigateByUrl(`/v2/manager-app/workspace/${id}`)
   }
   

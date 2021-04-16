@@ -5,12 +5,11 @@
     <div class="modal__close"><i (click)="closeModal()">X</i></div>
     <div class="modal__title">
       <h3 class="modal__heading">
-        THIS IS THE MODAAL
+        Are you sure about this?
       </h3>
     </div>
     <div class="modal__body">
-      <p>This is going to happen Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt qui rem dicta, libero 
-        dolores a pariatur excepturi aliquam deleniti alias?</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt ex quam reiciendis necessitatibus adipisci corporis, illo ipsum, nobis velit quisquam aliquam magni maiores dolor ratione qui vitae et provident natus!</p>
     </div>
     <div class="modal__button">
       <button (click)="deleteTodoList()" class="btn modal__button--confirm">CONFIRM</button>
@@ -55,9 +54,10 @@
     <form [formGroup]="todoForm" (ngSubmit)="addTodoToList(addTodoInput)">
       <div class="add-wrap">
         <input #addTodoInput 
+        autofocus="true"
         name="todoName"
         formControlName="todoName"
-        type="text" placeholder="Add a new todo" 
+        type="text" placeholder="Add a new to do" 
         class="todoList-card__add-item__input">
         <span class="fas fa-pencil-alt"></span>
 

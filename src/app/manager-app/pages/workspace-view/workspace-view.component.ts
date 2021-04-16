@@ -58,9 +58,7 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
       console.log(error)
     })
   }
-  // addTodoList(val){
 
-  // }
   addNewTodoList(val:string){
     this.managerAppService.createTodoList(val, this.workspaceID).subscribe( (resp:TodoListResponse)=> {
       this.managerAppService.globaltodoListTest = [...this.managerAppService.globaltodoListTest, resp.newTodoList];
@@ -69,7 +67,10 @@ export class WorkspaceViewComponent implements OnInit, OnDestroy {
   }
 
   setNavbarLink() {
-    this.managerAppService.isRendered = !this.managerAppService.isRendered ? this.managerAppService.isRendered = true : this.managerAppService.isRendered = false;
+    this.managerAppService.isRendered = 
+      !this.managerAppService.isRendered ? 
+      this.managerAppService.isRendered = true : 
+      this.managerAppService.isRendered = false;
   }
   setNameWorkspace(name: string) {
     this.managerAppService.workspaceName = name;

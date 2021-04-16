@@ -1,9 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdatedUserResponse } from 'src/app/auth/authInterfaces/auth.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { NotificationsComponent } from 'src/app/shared/notifications/notifications.component';
-import { EqualPass } from '../../manager-interfaces/checkpass.interface';
 
 import { ManagerAppService } from '../../services/manager-app.service';
 import { NotifyService } from '../../services/notify.service';
@@ -14,11 +13,14 @@ import { NotifyService } from '../../services/notify.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  
   @ViewChild('profilePicInput') profilePic!:ElementRef<HTMLInputElement>;
   @ViewChild('profilePic') profileImg!:ElementRef<HTMLImageElement>;
   get userData () {
     return this.managerAppService._authenticatedUser;
   }
+  public DEFAULT_PIC_PATH = this.userData.img ? this.userData.img : 'assets/img/user-img-default.png';
 
   userProfileForm: FormGroup  = this.fb.group({
     name: [this.userData.name, [Validators.required, Validators.minLength(3)]],
@@ -32,37 +34,50 @@ export class ProfileComponent implements OnInit {
     passwordConfirm: ['', [Validators.required, Validators.minLength(5)]], 
   })
 
+
   constructor(
     private managerAppService:ManagerAppService, 
     private fb: FormBuilder,
     private notifyService: NotifyService,
     private notifications: NotificationsComponent,
     private authService: AuthService
-    ) { }
+    ) {
+      // this.managerAppService.isRendered = true;
+     }
 
   ngOnInit(): void {
     // console.log(this.userData)
   }
 
-
+  //Picture settings
   loadImagePrevUpload(e:any) {
     if(e.target.files) {
       const reader = new FileReader(); 
+      //previsualisation 
       reader.readAsDataURL(e.target.files[0])
       reader.onload = (event:any) => {
         this.profileImg.nativeElement.src = `${event.target.result}`
       }
 
       this.managerAppService.patchProfileImg(e.target.files[0]).subscribe((resp:any) => {
-        // console.log(resp);
-        // this.managerAppService._authenticatedUser.img = resp
         this.managerAppService._authenticatedUser.img = resp.url;
       }, (error) => {
+        //TODO. Set error message notification
         console.log(error)
       })
 
     }
   }
+
+  pictureStyles() {
+    return {
+      'background-image': 'url('+ this.DEFAULT_PIC_PATH +')',
+      'background-size': 'cover',
+      'background-potion': 'center',
+      'border-radius': '50%'
+    }
+  }
+
   isInvalid(input: string){
     return this.userProfileForm.controls[input].errors 
             && this.userProfileForm.controls[input].touched
@@ -78,9 +93,6 @@ export class ProfileComponent implements OnInit {
       this.userProfileForm.markAllAsTouched()
       return;
     }
-    
-    // console.log(this.userProfileForm)
-    // console.log(this.userProfileForm.value)
 
     this.managerAppService.patchUserData(this.userProfileForm.value).subscribe((resp: UpdatedUserResponse) => {
       console.log(resp)
@@ -109,8 +121,6 @@ export class ProfileComponent implements OnInit {
   }
 
   resetPasswordForm() {
-
-
     if(this.resetPassForm.invalid) {
       this.resetPassForm.markAllAsTouched();
       return
@@ -143,10 +153,9 @@ export class ProfileComponent implements OnInit {
       }, 2000);
 
     })
-
-    
-
   }
 
+
+  
 
 }

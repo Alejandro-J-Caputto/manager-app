@@ -7,11 +7,7 @@
   justify-content: space-between;
   align-items: center;
   opacity: .80;
-  // position: absolute;
   z-index: 200000;
-  // margin-bottom: 4rem;
-
-  // align-items: center;
   @include responsive(phone) {
     // order: 1;
     position: fixed;
@@ -26,12 +22,9 @@
     color: $color-grey-dark-1;
     background-color: white;
     list-style: none;
-    // width: 100%;
     position: absolute;
     left: -3rem;
     top: 125%;
-    // top: 100%;
-    // right: 0%;
     z-index: 90000;
     padding: 0rem 5rem;
     @include responsive(phone) {
@@ -42,21 +35,20 @@
     }
     &__item {
       padding: 2rem;
+      // color: $color-white;
     }
   }
   &__link {
     position: relative;
   }
   &__link:link, 
-  &__link:visited{
+  &__link:visited,
+  &__link:active,
+  &__link:focus{
     color: $color-white;
     text-decoration: none;
-    // background-color: khaki;
-  
+    outline: none;
   }
-  // &__link:link .navbar-down-list {
-  //   visibility: visible;
-  // }
   &__list-item:hover .navbar-down-list{
     visibility: visible;
   }
@@ -71,30 +63,23 @@
   }
   &__logo {
     font-size: 4.4rem;
-    
   }
   &__list {
-    // flex: 0 0 80%;
-    // width: 50%;
-    // background-color: lightblue;
     position: relative;
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    // padding-right: 6rem;
     @include responsive(phone) {
-      flex: 0 0 60%;
-      // background-color: yellowgreen;
+      flex: 0 0 60%;  
       justify-content: flex-end;
      }
     &-item {
       align-items: center;
-      // background-color: lawngreen;
+      color: white;
       display: flex;
       padding: 0 3rem;
       height: 5rem;
-      // margin-right: 5px;
-      // height: 2rem;
+     
       @include responsive(phone) {
        padding: 0 2rem;
        margin-right: -0px;
@@ -104,34 +89,27 @@
         background-color: $color-angular-blue-light;
         cursor: pointer;
       }
-    
       &-user-photo {
-        // padding-top: 5px;
         width: 3.5rem;
         height: 3.5rem;
-        // width: 7rem;
-        // height: 7rem;
         border-radius: 50%;
-        // padding-bottom: 8px;
       }
       &-icon--settings {
-        font-size: 3rem;
-
-
-       
+        font-size: 3rem;  
       }
       &-icon--logout {
         font-size: 3rem;
       }
     }
   }
-
-
-
-
 }
 .workspace__name {
   font-size: 2rem;
   padding: 1rem 2rem;
 }
 
+.active-link-nav {
+  background-color: $color-angular-blue-dark;
+  outline: none;
+  color: white;
+}

@@ -14,11 +14,8 @@ export class NotifyService {
 
     switch (action) {
       case 'registration':
-        console.log(this.text)
           this.text = 'Succesfully registered';
           this.icon = 'far fa-check-circle'
-          console.log(this.text)
-          console.log(this.icon)
           return
       
       

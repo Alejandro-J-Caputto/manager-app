@@ -20,7 +20,7 @@
     <div class="profile-content">
       <div class="profile-content-display">
         <div class="profile-picture">
-          <img #profilePic [src]="userData.img ? userData.img : 'assets/img/user-img-default.png'" alt="">
+          <img #profilePic [ngStyle]="pictureStyles()">
           <input #profilePicInput type="file" class="profile-picture__file" (change)="loadImagePrevUpload($event)">
           <i class="fas fa-camera"></i>
         </div>

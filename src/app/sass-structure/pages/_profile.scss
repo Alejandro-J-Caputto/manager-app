@@ -94,8 +94,9 @@
   justify-content: center;
   overflow: hidden;
   & img {
-    align-self: center;
-
+    // align-self: center;
+    background-size: cover;
+    background-position: center;
     height: 20rem;
     width: 20rem;
     border-radius: 50%;

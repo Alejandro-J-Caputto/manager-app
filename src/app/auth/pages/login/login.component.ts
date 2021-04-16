@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpHeaders} from '@angular/common/http';
 
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -45,14 +45,14 @@ export class LoginComponent implements OnInit {
       // console.log(this.login.password)
       this.notifyService.getMessage('loading')
       this.notification.toggleNotification();
+      //Set form status to disabled while checking the response
       logForm.control.disable();
       this.auth.authLogin(this.login).subscribe((resp:LoginResponse) => {
+
         this.logButton.nativeElement.disabled = true;
         setTimeout(() => {
           
           if(resp.status === 'success'){
-            // this.notification.toggleNotification();
-            // this.auth._token = resp.token;
             this.notifyService.getMessage('login');
             this.managerApp.token = `Bearer ${resp.token}`;
             this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
         // console.log(err)
         this.errorApi = err.error.message;
         this.logButton.nativeElement.disabled = false;
+        console.log(this.errorApi)
         this.notifyService.getMessage('wuops', this.errorApi);
 
         setTimeout(() => {
@@ -75,7 +76,6 @@ export class LoginComponent implements OnInit {
         }, 2500);
         this.logButton.nativeElement.disabled = false;
         logForm.control.enable();
-        // this.notification.toggleNotification();
       });
     }
   }

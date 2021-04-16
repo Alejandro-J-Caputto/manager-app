@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
   // });
 
   //FORMBUILDER REACTIVE FORM 
+  //TODO. Add more Validators a custom Validators
   registerForm:FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)] ,],
     email: ['', [Validators.required, Validators.email]],
@@ -52,8 +53,7 @@ export class RegisterComponent implements OnInit {
   //Quick validator 
   //TODO. better validation
   isInvalid(input: string){
-    return this.registerForm.controls[input].errors 
-            && this.registerForm.controls[input].touched
+    return  this.registerForm.controls[input].errors &&  this.registerForm.controls[input].touched
   }
 
   sendForm(){
@@ -65,46 +65,39 @@ export class RegisterComponent implements OnInit {
     this.notifyService.getMessage('loading');
     this.notification.toggleNotification();
 
-    this.auth.authRegister(this.registerForm.value).subscribe((resp:RegisterResponse) => {
-      this.regButton.nativeElement.disabled = true;
-      this.registerForm.disable();
-      setTimeout(() => {
-        if(resp.status === 'success'){
-          // this.notification.toggleNotification();
-          this.managerApp.token = `Bearer ${resp.token}`;
-          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
-  
-          // this.auth._token = resp.token;
-          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
-          this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
-          localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
-          this.notifyService.getMessage('registration');
+    //Set form status to disabled while checking the response
+    this.registerForm.disable();
+    this.regButton.nativeElement.disabled = true;
+    //Register Http Observable
+    this.auth.authRegister(this.registerForm.value)
+      .subscribe((resp:RegisterResponse) => {
+        setTimeout(() => {
+          if(resp.status === 'success'){
+            this.notifyService.getMessage('registration');
+            this.managerApp.token = `Bearer ${resp.token}`;
+            this.managerApp.headers = new HttpHeaders().set('Authorization', this.managerApp.token);
+            localStorage.setItem('bearer-todo', `Bearer ${resp.token}`);
+            this.auth._user = resp.newUser;
+
+            setTimeout(() => {  
+              this.router.navigateByUrl('/v2/manager-app/home/workspaces')
+            }, 1500);
+          }
+        }, 2000);
+      },err => {
+        // console.log(err)
+        this.errorApi = err.error.message;
+        this.regButton.nativeElement.disabled = false;
+        this.notifyService.getMessage('wuops', this.errorApi);
+
+        setTimeout(() => {
           this.notification.toggleNotification();
-          // this.managerApp._authenticatedUser = resp.newUser;
-          // console.log(resp.newUser)
-          // console.log(resp.token)
-          this.auth._user = resp.newUser;
-          setTimeout(() => {
-            
-            this.router.navigateByUrl('/v2/manager-app/home/workspaces')
-          }, 1500);
-        }
-        
-      }, 2000);
-    },err => {
-      // console.log(err)
-      this.errorApi = err.error.message;
-      this.regButton.nativeElement.disabled = false;
-      this.notifyService.getMessage('wuops', this.errorApi);
+        }, 2500);
+        this.regButton.nativeElement.disabled = false;
+        this.registerForm.enable();
+      })
 
-      setTimeout(() => {
-        this.notification.toggleNotification();
-      }, 2500);
-      this.regButton.nativeElement.disabled = false;
-      this.registerForm.enable();
-    })
-
-    this.registerForm.reset();
+      this.registerForm.reset();
   }
 }
 
